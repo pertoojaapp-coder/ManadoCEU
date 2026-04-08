@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
+  <meta name="theme-color" content="#ea1d2c">
+  <title>Maná do Céu • Peça online</title>
+  
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  
+  <style>
+    /* =====================================================
+       ESTILO iFOOD + COCA-COLA (VERMELHO PRINCIPAL)
+       Fundo principal: vermelho, cards brancos
+       Tipografia: Inter
+       ===================================================== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-primary: #ea1d2c;      /* vermelho iFood - fundo principal */
+      --bg-secondary: #ffffff;     /* fundo de cards e áreas internas */
+      --primary: #ea1d2c;          /* cor principal */
+      --primary-hover: #c81a26;
+      --text-dark: #1a1a1a;        /* texto principal (quase preto) */
+      --text-secondary: #555555;    /* texto secundário */
+      --border-light: #eeeeee;      /* bordas suaves */
+      --success: #22c55e;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+      --radius-card: 16px;
+      --radius-btn: 40px;
+      --transition: 0.2s ease;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-dark);
+      scroll-behavior: smooth;
+      line-height: 1.5;
+    }
+
+    /* scrollbar neutra */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #eaeaea; }
+    ::-webkit-scrollbar-thumb { background: #c0c0c0; border-radius: 8px; }
+
+    /* Header vermelho (estilo iFood) */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--bg-primary);
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo-icon {
+      font-size: 28px;
+      color: white;
+    }
+    .logo-text {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: white;
+      letter-spacing: -0.3px;
+    }
+
+    .nav-buttons {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .btn-outline-light {
+      background: transparent;
+      border: 1.5px solid white;
+      color: white;
+      padding: 8px 20px;
+      border-radius: var(--radius-btn);
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+    .btn-outline-light:hover {
+      background: white;
+      color: var(--primary);
+      transform: translateY(-1px);
+    }
+
+    .cart-icon {
+      position: relative;
+      font-size: 26px;
+      cursor: pointer;
+      color: white;
+      transition: transform 0.1s ease;
+    }
+    .cart-icon:active { transform: scale(0.94); }
+    .cart-count {
+      position: absolute;
+      top: -8px;
+      right: -12px;
+      background: white;
+      color: var(--primary);
+      font-size: 11px;
+      font-weight: bold;
+      width: 20px;
+      height: 20px;
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s ease;
+    }
+    .cart-pop {
+      transform: scale(1.2);
+    }
+
+    /* Hero section vermelha */
+    .hero {
+      background-color: var(--bg-primary);
+      padding: 48px 24px 64px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .hero-content h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: white;
+      margin-bottom: 8px;
+    }
+    .hero-tagline {
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: white;
+      margin-bottom: 16px;
+    }
+    .hero-desc {
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 32px;
+      max-width: 480px;
+    }
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .btn-primary-red {
+      background: white;
+      border: none;
+      padding: 12px 28px;
+      border-radius: var(--radius-btn);
+      font-weight: 600;
+      color: var(--primary);
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: var(--shadow-sm);
+    }
+    .btn-primary-red:hover {
+      background: #f0f0f0;
+      transform: translateY(-1px);
+    }
+    .btn-primary-red:active { transform: scale(0.97); }
+    .btn-whatsapp {
+      background: #25d366;
+      color: white;
+    }
+    .btn-whatsapp:hover { background: #20b859; color: white; }
+    .hero-image img {
+      width: 100%;
+      max-width: 440px;
+      border-radius: 24px;
+      box-shadow: var(--shadow-md);
+      object-fit: cover;
+    }
+
+    /* Seções de conteúdo (fundos brancos) */
+    .section {
+      background-color: var(--bg-secondary);
+      padding: 56px 24px;
+      max-width: 1280px;
+      margin: 0 auto;
+      border-radius: 32px 32px 0 0;
+    }
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--text-dark);
+    }
+    .section-sub {
+      color: var(--text-secondary);
+      margin-bottom: 36px;
+    }
+    .category h3 {
+      font-size: 1.5rem;
+      margin: 40px 0 24px 0;
+      padding-left: 14px;
+      border-left: 4px solid var(--primary);
+      font-weight: 600;
+    }
+
+    /* Cards estilo iFood (brancos) */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+      gap: 24px;
+    }
+    .product-card {
+      background: var(--bg-secondary);
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      transition: var(--transition);
+      border: 1px solid var(--border-light);
+      position: relative;
+      cursor: pointer;
+      box-shadow: var(--shadow-sm);
+    }
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--primary);
+    }
+    .badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: var(--primary);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 30px;
+      z-index: 2;
+    }
+    .badge-hot {
+      background: #f97316;
+    }
+    .product-img {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+    }
+    .product-info {
+      padding: 18px;
+    }
+    .product-name {
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+      color: var(--text-dark);
+    }
+    .product-desc {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-bottom: 14px;
+      line-height: 1.4;
+    }
+    .price-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 8px;
+    }
+    .product-price {
+      font-weight: 800;
+      font-size: 1.35rem;
+      color: var(--primary);
+    }
+    .add-btn {
+      background: rgba(234, 29, 44, 0.08);
+      border: 1px solid var(--primary);
+      border-radius: 40px;
+      padding: 6px 16px;
+      font-weight: 600;
+      color: var(--primary);
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .add-btn:active { transform: scale(0.94); }
+    .add-btn:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* Features */
+    .features-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      margin-top: 24px;
+    }
+    .feature-item {
+      text-align: center;
+      max-width: 210px;
+    }
+    .feature-icon {
+      font-size: 44px;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+
+    /* Storytelling */
+    .story-card {
+      background: var(--bg-secondary);
+      border-radius: 24px;
+      padding: 40px 32px;
+      text-align: center;
+      max-width: 780px;
+      margin: 0 auto;
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Reviews */
+    .review-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 28px;
+      justify-content: center;
+    }
+    .review-card {
+      background: var(--bg-secondary);
+      border-radius: 20px;
+      padding: 24px;
+      width: 280px;
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-sm);
+    }
+    .stars { color: #ffb800; margin-bottom: 12px; letter-spacing: 2px; }
+
+    /* Oferta especial */
+    .flash-offer {
+      background: #fff5f5;
+      border-radius: 24px;
+      margin: 20px;
+      padding: 36px 24px;
+      text-align: center;
+      border: 1px solid #ffe0e0;
+    }
+
+    /* ========== CARROSSEL ========== */
+    .carousel-section {
+      background: var(--bg-secondary);
+      padding: 0 24px 40px 24px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .carousel-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+      color: var(--text-dark);
+    }
+    .carousel-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .carousel-track {
+      display: flex;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      gap: 20px;
+      padding: 8px 4px 20px 4px;
+      scrollbar-width: thin;
+      -webkit-overflow-scrolling: touch;
+    }
+    .carousel-track::-webkit-scrollbar {
+      height: 6px;
+    }
+    .carousel-track::-webkit-scrollbar-thumb {
+      background: var(--primary);
+      border-radius: 10px;
+    }
+    .carousel-card {
+      flex: 0 0 260px;
+      background: var(--bg-secondary);
+      border-radius: var(--radius-card);
+      border: 1px solid var(--border-light);
+      overflow: hidden;
+      transition: var(--transition);
+      box-shadow: var(--shadow-sm);
+    }
+    .carousel-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+    }
+    .carousel-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+    .carousel-card-info {
+      padding: 16px;
+    }
+    .carousel-card-info h4 {
+      font-size: 1rem;
+      margin-bottom: 4px;
+    }
+    .carousel-price {
+      color: var(--primary);
+      font-weight: 800;
+      margin-top: 8px;
+    }
+    .carousel-btn {
+      background: white;
+      border: 1px solid var(--border-light);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: absolute;
+      z-index: 2;
+      box-shadow: var(--shadow-sm);
+      transition: 0.2s;
+    }
+    .carousel-btn:hover {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+    .carousel-btn-left {
+      left: -12px;
+    }
+    .carousel-btn-right {
+      right: -12px;
+    }
+
+    /* ========== HORÁRIOS ========== */
+    .hours-section {
+      background: var(--bg-secondary);
+      padding: 40px 24px;
+      max-width: 1280px;
+      margin: 0 auto;
+      border-radius: 0 0 32px 32px;
+    }
+    .hours-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+    .hour-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 12px 16px;
+      background: #f9f9f9;
+      border-radius: 16px;
+      border: 1px solid var(--border-light);
+    }
+    .hour-day {
+      font-weight: 600;
+    }
+    .hour-time {
+      color: var(--text-secondary);
+    }
+    .hour-closed {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    /* Modais */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(4px);
+      z-index: 2000;
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background: var(--bg-secondary);
+      width: 90%;
+      max-width: 520px;
+      border-radius: 28px;
+      padding: 28px;
+      border: none;
+      box-shadow: var(--shadow-md);
+    }
+    input, select {
+      background: #f9f9f9;
+      border: 1px solid var(--border-light);
+      padding: 14px;
+      border-radius: 24px;
+      color: var(--text-dark);
+      font-family: 'Inter', sans-serif;
+      width: 100%;
+      margin: 8px 0;
+    }
+    input:focus, select:focus { outline: none; border-color: var(--primary); }
+
+    /* Toast */
+    .toast-notify {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: #2c2c2e;
+      backdrop-filter: blur(12px);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 60px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 3000;
+      transition: transform 0.25s ease;
+      pointer-events: none;
+      font-size: 0.9rem;
+    }
+    .toast-notify.show { transform: translateX(-50%) translateY(0); }
+    footer {
+      text-align: center;
+      padding: 32px;
+      background: var(--bg-primary);
+      color: white;
+    }
+    @media (max-width: 700px) {
+      .hero-content h1 { font-size: 2rem; }
+      .products-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+      .section { padding: 40px 16px; }
+      .carousel-card { flex: 0 0 220px; }
+    }
+    @media (max-width: 480px) {
+      .products-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="header">
+  <div class="logo-area">
+    <i class="fas fa-cloud-moon logo-icon"></i>
+    <span class="logo-text">Maná do Céu</span>
+  </div>
+  <div class="nav-buttons">
+    <button class="btn-outline-light" id="scrollToMenuBtn"><i class="fas fa-utensils"></i> Cardápio</button>
+    <div class="cart-icon" id="cartIcon">
+      <i class="fas fa-shopping-bag"></i>
+      <span class="cart-count" id="cartCount">0</span>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="hero-content">
+      <h1>Maná do Céu</h1>
+      <div class="hero-tagline">🍲 Sabor que conecta</div>
+      <p class="hero-desc">Comida feita na hora, entregue quentinha. Peça online e receba em casa.</p>
+      <div class="btn-group">
+        <button class="btn-primary-red" id="heroMenuBtn"><i class="fas fa-list"></i> Ver cardápio</button>
+        <button class="btn-primary-red btn-whatsapp" id="heroWhatsBtn"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&auto=format" alt="Marmita">
+    </div>
+  </div>
+
+  <!-- CARROSSEL DE DESTAQUES -->
+  <div class="carousel-section">
+    <h2 class="carousel-title">🍽️ Destaques da semana</h2>
+    <div class="carousel-container">
+      <button class="carousel-btn carousel-btn-left" id="carouselLeft"><i class="fas fa-chevron-left"></i></button>
+      <div class="carousel-track" id="carouselTrack">
+        <!-- Cards serão inseridos via JS -->
+      </div>
+      <button class="carousel-btn carousel-btn-right" id="carouselRight"><i class="fas fa-chevron-right"></i></button>
+    </div>
+  </div>
+
+  <div id="menuSection" class="section">
+    <h2 class="section-title">Nosso cardápio</h2>
+    <p class="section-sub">Escolha seu prato e personalize</p>
+    <div id="menuContent">
+      <div class="category">
+        <h3>🔥 Prato do Dia</h3>
+        <div class="products-grid" id="dishDayContainer"></div>
+      </div>
+      <div class="category">
+        <h3>🥩 Proteínas</h3>
+        <div class="products-grid" id="proteinContainer"></div>
+      </div>
+      <div class="category">
+        <h3>🥗 Acompanhamentos</h3>
+        <div class="products-grid" id="sidesContainer"></div>
+      </div>
+      <div class="category">
+        <h3>➕ Extras & Bebidas</h3>
+        <div class="products-grid" id="extrasContainer"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">Por que escolher a gente?</h2>
+    <div class="features-grid">
+      <div class="feature-item"><i class="fas fa-fire feature-icon"></i><h3>Pronto em minutos</h3><p>Agilidade e qualidade</p></div>
+      <div class="feature-item"><i class="fas fa-leaf feature-icon"></i><h3>Ingredientes selecionados</h3><p>Sabor e frescor</p></div>
+      <div class="feature-item"><i class="fas fa-motorcycle feature-icon"></i><h3>Entrega rápida</h3><p>Quentinho na sua porta</p></div>
+      <div class="feature-item"><i class="fas fa-chart-line feature-icon"></i><h3>Mais pedido da região</h3><p>Milhares de pedidos felizes</p></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="story-card">
+      <i class="fas fa-cloud-sun" style="font-size: 48px; color: var(--primary);"></i>
+      <h3 style="margin: 16px 0; font-size: 1.8rem;">Maná do Céu Delivery</h3>
+      <p>Nascemos para entregar sabor e aconchego. Cada prato é preparado com ingredientes frescos e o cuidado que você merece. Peça online e tenha uma experiência completa.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">Aprovado por quem pede</h2>
+    <div class="review-grid">
+      <div class="review-card"><div class="stars">★★★★★</div><p>“Comida maravilhosa, parece feita em casa!”</p><strong>- Mariana S.</strong></div>
+      <div class="review-card"><div class="stars">★★★★★</div><p>“Melhor custo-benefício, entrega rápida.”</p><strong>- Carlos M.</strong></div>
+      <div class="review-card"><div class="stars">★★★★★</div><p>“O frango grelhado é divino, nota 10!”</p><strong>- Fernanda L.</strong></div>
+    </div>
+  </div>
+
+  <div class="flash-offer">
+    <span class="badge" style="position: relative; top:0; left:0; display: inline-block;">🔥 MAIS PEDIDO</span>
+    <h3 style="margin: 12px 0;">Marmita completa + suco natural</h3>
+    <p style="font-size: 2rem; font-weight: 800; color: var(--primary);">R$ 22,90</p>
+    <button id="comboBtn" class="btn-primary-red" style="margin-top: 12px;">Adicionar combo</button>
+  </div>
+
+  <!-- SEÇÃO DE HORÁRIOS -->
+  <div class="hours-section">
+    <h2 class="section-title">Horário de funcionamento</h2>
+    <div class="hours-grid" id="hoursGrid"></div>
+  </div>
+</main>
+
+<footer>
+  <p>Maná do Céu Delivery • CNPJ: 37.XXX.829/0002-54</p>
+  <p style="font-size: 0.8rem;">Peça pelo app ou site • Entrega rápida</p>
+</footer>
+
+<!-- Modais -->
+<div id="cartModal" class="modal">
+  <div class="modal-content">
+    <h3><i class="fas fa-shopping-bag"></i> Seu carrinho</h3>
+    <div id="cartItemsList" style="margin: 16px 0;"></div>
+    <hr style="border-color: #e5e5e5;">
+    <p><strong>Total: R$ <span id="cartTotal">0.00</span></strong></p>
+    <button id="checkoutBtnModal" class="btn-primary-red" style="width:100%; margin-top:12px;">Finalizar pedido</button>
+    <button id="closeCartModalBtn" class="btn-outline-light" style="width:100%; margin-top:8px; background:transparent; color:var(--primary); border-color:var(--primary);">Fechar</button>
+  </div>
+</div>
+
+<div id="checkoutModal" class="modal">
+  <div class="modal-content">
+    <h3>📋 Finalizar pedido</h3>
+    <input type="text" id="clientName" placeholder="Seu nome completo">
+    <input type="text" id="clientAddress" placeholder="Endereço completo">
+    <select id="paymentMethod">
+      <option>Pix (5% OFF)</option><option>Cartão crédito</option><option>Dinheiro</option>
+    </select>
+    <button id="finalizeWhatsBtn" class="btn-primary-red btn-whatsapp" style="width:100%; margin:12px 0;"><i class="fab fa-whatsapp"></i> Enviar pedido</button>
+    <button id="closeCheckoutModal" class="btn-outline-light" style="width:100%; background:transparent; color:var(--primary); border-color:var(--primary);">Voltar</button>
+  </div>
+</div>
+
+<div id="toastMessage" class="toast-notify"><i class="fas fa-check-circle" style="color: #22c55e;"></i> <span id="toastText">Adicionado</span></div>
+
+<script>
+  // ==================== DADOS DO CARDÁPIO (mantidos) ====================
+  const productsData = {
+    pratoDoDia: [
+      { id: "p1", name: "Marmita Executiva", desc: "Arroz, feijão, carne guisada, farofa e salada", price: 18.90, bestseller: true, image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=200" }
+    ],
+    proteins: [
+      { id: "prot1", name: "Carne Guisada", desc: "Cubos macios ao molho especial", price: 16.90, image: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=200" },
+      { id: "prot2", name: "Frango Grelhado", desc: "Filé suculento e temperado", price: 15.90, image: "https://images.unsplash.com/photo-1600891964092-4316c288032e?w=200" },
+      { id: "prot3", name: "Peixe Grelhado", desc: "Com ervas e limão", price: 18.90, image: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=200" }
+    ],
+    sides: [
+      { id: "side1", name: "Farofa Caseira", price: 4.50, desc: "Bacon e ovos" },
+      { id: "side2", name: "Salada Verde", price: 4.00, desc: "Alface, tomate" },
+      { id: "side3", name: "Macarrão alho e óleo", price: 5.00, desc: "Sabor caseiro" }
+    ],
+    extras: [
+      { id: "ext1", name: "Ovo Frito", price: 2.50, desc: "" },
+      { id: "ext2", name: "Suco Natural", price: 6.00, desc: "Laranja" },
+      { id: "ext3", name: "Refrigerante Lata", price: 5.00, desc: "Coca/Guaraná" }
+    ]
+  };
+
+  // ==================== DADOS DO CARROSSEL ====================
+  const carouselItems = [
+    { name: "Marmita Executiva", price: "R$ 18,90", image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=200", tag: "🔥 Mais pedido" },
+    { name: "Combo Família", price: "R$ 54,90", image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=200", tag: "👨‍👩‍👧‍👦 3 marmitas" },
+    { name: "Marmita + Suco", price: "R$ 22,90", image: "https://images.unsplash.com/photo-1561758033-d89a9ad46330?w=200", tag: "🥤 Promoção" },
+    { name: "Frango Grelhado", price: "R$ 15,90", image: "https://images.unsplash.com/photo-1600891964092-4316c288032e?w=200", tag: "🍗 Saudável" },
+    { name: "Carne Guisada", price: "R$ 16,90", image: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=200", tag: "🥩 Tradicional" }
+  ];
+
+  // ==================== HORÁRIOS ====================
+  const hoursData = [
+    { day: "Domingo", time: "Fechado", closed: true },
+    { day: "Segunda", time: "07:00 às 14:00", closed: false },
+    { day: "Terça", time: "07:00 às 14:00", closed: false },
+    { day: "Quarta", time: "07:00 às 14:00", closed: false },
+    { day: "Quinta", time: "07:00 às 14:00", closed: false },
+    { day: "Sexta", time: "07:00 às 14:00", closed: false },
+    { day: "Sábado", time: "07:00 às 14:00", closed: false }
+  ];
+
+  function renderHours() {
+    const container = document.getElementById("hoursGrid");
+    container.innerHTML = hoursData.map(h => `
+      <div class="hour-item">
+        <span class="hour-day">${h.day}</span>
+        <span class="${h.closed ? 'hour-closed' : 'hour-time'}">${h.time}</span>
+      </div>
+    `).join('');
+  }
+
+  // ==================== CARROSSEL ====================
+  function renderCarousel() {
+    const track = document.getElementById("carouselTrack");
+    track.innerHTML = carouselItems.map(item => `
+      <div class="carousel-card">
+        <img src="${item.image}" alt="${item.name}" loading="lazy">
+        <div class="carousel-card-info">
+          <div class="badge" style="position:relative; top:0; left:0; display:inline-block; margin-bottom:8px;">${item.tag}</div>
+          <h4>${item.name}</h4>
+          <div class="carousel-price">${item.price}</div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function initCarousel() {
+    const track = document.getElementById("carouselTrack");
+    const leftBtn = document.getElementById("carouselLeft");
+    const rightBtn = document.getElementById("carouselRight");
+    if (leftBtn && rightBtn) {
+      leftBtn.addEventListener("click", () => {
+        track.scrollBy({ left: -280, behavior: "smooth" });
+      });
+      rightBtn.addEventListener("click", () => {
+        track.scrollBy({ left: 280, behavior: "smooth" });
+      });
+    }
+  }
+
+  // ==================== CARDÁPIO (renderização) ====================
+  function renderProductCard(p, type) {
+    let badgeHtml = '';
+    if (p.bestseller) badgeHtml = '<div class="badge badge-hot">🔥 Mais pedido</div>';
+    return `
+      <div class="product-card" data-id="${p.id}">
+        ${badgeHtml}
+        <img class="product-img" src="${p.image || 'https://via.placeholder.com/200?text=Prato'}" alt="${p.name}" loading="lazy">
+        <div class="product-info">
+          <div class="product-name">${p.name}</div>
+          <div class="product-desc">${p.desc || ''}</div>
+          <div class="price-row">
+            <span class="product-price">R$ ${p.price.toFixed(2)}</span>
+            <button class="add-btn" data-product='${JSON.stringify(p)}'>Adicionar</button>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  function loadProducts() {
+    document.getElementById("dishDayContainer").innerHTML = productsData.pratoDoDia.map(p => renderProductCard(p, "dish")).join('');
+    document.getElementById("proteinContainer").innerHTML = productsData.proteins.map(p => renderProductCard(p, "protein")).join('');
+    document.getElementById("sidesContainer").innerHTML = productsData.sides.map(p => renderProductCard(p, "side")).join('');
+    document.getElementById("extrasContainer").innerHTML = productsData.extras.map(p => renderProductCard(p, "extra")).join('');
+  }
+
+  // ==================== CARRINHO (lógica mantida) ====================
+  let cart = JSON.parse(localStorage.getItem("mana_cart")) || [];
+  function saveCart() { localStorage.setItem("mana_cart", JSON.stringify(cart)); updateCartUI(); }
+  function updateCartUI() {
+    const count = cart.reduce((acc,i) => acc + i.quantity, 0);
+    const countSpan = document.getElementById("cartCount");
+    countSpan.innerText = count;
+    countSpan.classList.add("cart-pop");
+    setTimeout(() => countSpan.classList.remove("cart-pop"), 200);
+  }
+  function showToast(msg) {
+    const toast = document.getElementById("toastMessage");
+    document.getElementById("toastText").innerText = msg;
+    toast.classList.add("show");
+    setTimeout(() => toast.classList.remove("show"), 1500);
+  }
+  function addToCart(product, quantity = 1) {
+    const existing = cart.find(i => i.id === product.id);
+    if(existing) existing.quantity += quantity;
+    else cart.push({ ...product, quantity });
+    saveCart();
+    showToast(`${product.name} adicionado!`);
+  }
+
+  async function openCustomizationModal(baseProduct) {
+    const { value: choices } = await Swal.fire({
+      title: `Monte seu ${baseProduct.name}`,
+      html: `
+        <div style="text-align:left; color:#1a1a1a">
+          <label>🥩 Proteína:</label>
+          <select id="custom-protein" style="margin-bottom:12px; width:100%; background:#f9f9f9;">${productsData.proteins.map(p => `<option value='${JSON.stringify(p)}'>${p.name} + R$ ${p.price.toFixed(2)}</option>`).join('')}</select>
+          <label>🥗 Acompanhamento:</label>
+          <select id="custom-side" style="margin-bottom:12px; width:100%; background:#f9f9f9;">${productsData.sides.map(s => `<option value='${JSON.stringify(s)}'>${s.name} + R$ ${s.price.toFixed(2)}</option>`).join('')}</select>
+          <label>➕ Extra (opcional):</label>
+          <select id="custom-extra" style="width:100%; background:#f9f9f9;"><option value="null">Nenhum</option>${productsData.extras.map(e => `<option value='${JSON.stringify(e)}'>${e.name} + R$ ${e.price.toFixed(2)}</option>`).join('')}</select>
+        </div>
+      `,
+      background: "#ffffff",
+      confirmButtonText: "Adicionar",
+      showCancelButton: true,
+      preConfirm: () => {
+        const protein = JSON.parse(document.getElementById("custom-protein").value);
+        const side = JSON.parse(document.getElementById("custom-side").value);
+        const extraRaw = document.getElementById("custom-extra").value;
+        const extra = extraRaw !== "null" ? JSON.parse(extraRaw) : null;
+        return { protein, side, extra };
+      }
+    });
+    if (choices) {
+      const total = baseProduct.price + choices.protein.price + choices.side.price + (choices.extra ? choices.extra.price : 0);
+      const customItem = {
+        id: `custom_${Date.now()}`,
+        name: `${baseProduct.name} (${choices.protein.name} + ${choices.side.name}${choices.extra ? ` + ${choices.extra.name}` : ''})`,
+        price: total,
+        quantity: 1
+      };
+      addToCart(customItem, 1);
+    }
+  }
+
+  document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("add-btn")) {
+      const prod = JSON.parse(e.target.getAttribute("data-product"));
+      openCustomizationModal(prod);
+    }
+  });
+
+  document.getElementById("comboBtn")?.addEventListener("click", () => {
+    addToCart({ id: "combo_esp", name: "Marmita + Suco Especial", price: 22.90 }, 1);
+  });
+
+  // Modais
+  const cartModal = document.getElementById("cartModal");
+  const cartIconDiv = document.getElementById("cartIcon");
+  const closeCartBtn = document.getElementById("closeCartModalBtn");
+  cartIconDiv.onclick = () => { renderCartModal(); cartModal.style.display = "flex"; };
+  closeCartBtn.onclick = () => cartModal.style.display = "none";
+  function renderCartModal() {
+    const listDiv = document.getElementById("cartItemsList");
+    let total = 0;
+    if (cart.length === 0) listDiv.innerHTML = "<p>Carrinho vazio</p>";
+    else {
+      listDiv.innerHTML = "";
+      cart.forEach((item, idx) => {
+        total += item.price * item.quantity;
+        listDiv.innerHTML += `<div style="display:flex; justify-content:space-between; margin-bottom:10px;"><span>${item.name} x${item.quantity}</span><span>R$ ${(item.price * item.quantity).toFixed(2)} <button class="remove-item" data-idx="${idx}" style="background:none; border:none; color:#ea1d2c; cursor:pointer;"><i class="fas fa-trash-alt"></i></button></span></div>`;
+      });
+    }
+    document.getElementById("cartTotal").innerText = total.toFixed(2);
+    document.querySelectorAll(".remove-item").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        const idx = parseInt(btn.getAttribute("data-idx"));
+        cart.splice(idx, 1);
+        saveCart();
+        renderCartModal();
+      });
+    });
+  }
+
+  const checkoutModal = document.getElementById("checkoutModal");
+  document.getElementById("checkoutBtnModal").onclick = () => {
+    if (cart.length === 0) { showToast("Adicione itens ao carrinho"); return; }
+    cartModal.style.display = "none";
+    checkoutModal.style.display = "flex";
+  };
+  document.getElementById("closeCheckoutModal").onclick = () => checkoutModal.style.display = "none";
+  document.getElementById("finalizeWhatsBtn").onclick = () => {
+    const name = document.getElementById("clientName").value.trim();
+    const address = document.getElementById("clientAddress").value.trim();
+    const payment = document.getElementById("paymentMethod").value;
+    if (!name || !address) { showToast("Preencha nome e endereço"); return; }
+    let msg = `🍽️ *PEDIDO MANÁ DO CÉU* 🍽️%0A*Cliente:* ${name}%0A*Endereço:* ${address}%0A*Pagamento:* ${payment}%0A%0A*Itens:*%0A`;
+    let total = 0;
+    cart.forEach(i => { msg += `- ${i.name} x${i.quantity} = R$ ${(i.price * i.quantity).toFixed(2)}%0A`; total += i.price * i.quantity; });
+    msg += `%0A*Total: R$ ${total.toFixed(2)}*%0A🔔 Pedido via site`;
+    window.open(`https://wa.me/5511999999999?text=${msg}`, "_blank");
+    cart = []; saveCart(); checkoutModal.style.display = "none";
+    Swal.fire({ title: "Pedido enviado!", text: "Em breve entraremos em contato", icon: "success", background: "#ffffff", color: "#1a1a1a" });
+  };
+
+  document.getElementById("scrollToMenuBtn")?.addEventListener("click", () => document.getElementById("menuSection").scrollIntoView({ behavior: "smooth" }));
+  document.getElementById("heroMenuBtn")?.addEventListener("click", () => document.getElementById("menuSection").scrollIntoView({ behavior: "smooth" }));
+  document.getElementById("heroWhatsBtn")?.addEventListener("click", () => Swal.fire({ title: "Peça pelo WhatsApp", text: "Finalize o pedido no carrinho e envie direto", icon: "info", background: "#ffffff", color: "#1a1a1a" }));
+
+  // Inicialização
+  loadProducts();
+  renderCarousel();
+  initCarousel();
+  renderHours();
+  updateCartUI();
+</script>
+</body>
+</html>
