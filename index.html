@@ -82,7 +82,7 @@
     /* Banner, categorias, cards, carrossel etc. (mantidos exatamente iguais) */
     .hero-banner {
       position: relative; background-color: var(--primary);
-      background-image: url('https://raw.githubusercontent.com/SEU_USUARIO/SEU_REPO/main/ChatGPT%20Image%208%20de%20abr.%20de%202026%2C%2013_29_54.png');
+      background-image: url('https://drive.google.com/uc?export=view&id=1lsjQNAvNNkzmphKZiZteg_bzy6cQ5ZPh');
       background-size: 200px; background-repeat: no-repeat; background-position: 85% center;
       padding: 40px 24px 56px; margin-bottom: 0; isolation: isolate;
     }
@@ -256,9 +256,9 @@
 <!-- SPLASH SCREEN -->
 <div id="splash">
   <div class="splash-content">
-    <!-- ALTERE O LINK ABAIXO PARA O CAMINHO CORRETO DA SUA IMAGEM NO GITHUB -->
+    <!-- LOGO CORRIGIDA COM O LINK DO GOOGLE DRIVE -->
     <img class="splash-logo" 
-         src="https://raw.githubusercontent.com/SEU_USUARIO/SEU_REPO/main/ChatGPT%20Image%208%20de%20abr.%20de%202026%2C%2013_29_54.png" 
+         src="https://drive.google.com/uc?export=view&id=1lsjQNAvNNkzmphKZiZteg_bzy6cQ5ZPh" 
          alt="Maná do Céu" 
          onerror="this.src='https://placehold.co/400x400/8B0000/white?text=Maná+do+Céu'">
     <div class="welcome-title">Bem-vindo ao Maná do Céu</div>
@@ -271,9 +271,9 @@
 <div id="mainContent">
   <header class="app-header">
     <div class="brand-area">
-      <!-- ALTERE O LINK ABAIXO PARA O CAMINHO CORRETO DA SUA IMAGEM NO GITHUB -->
+      <!-- LOGO DO HEADER TAMBÉM CORRIGIDA -->
       <img class="header-logo-img" 
-           src="https://raw.githubusercontent.com/SEU_USUARIO/SEU_REPO/main/ChatGPT%20Image%208%20de%20abr.%20de%202026%2C%2013_29_54.png" 
+           src="https://drive.google.com/uc?export=view&id=1lsjQNAvNNkzmphKZiZteg_bzy6cQ5ZPh" 
            alt="Logo" 
            onerror="this.src='https://placehold.co/400x400/8B0000/white?text=Logo'">
       <div class="brand-text">
@@ -313,7 +313,7 @@
     <div class="carousel-section">
       <div class="carousel-header">
         <h2 class="carousel-title">Destaques da semana</h2>
-        <div id="statusBadge" class="status-badge"> Carregando...</div>
+        <div id="statusBadge" class="status-badge">🟢 Carregando...</div>
       </div>
       <div class="carousel-container">
         <button class="carousel-btn carousel-btn-left" id="carouselLeft"><i class="fas fa-chevron-left"></i></button>
@@ -397,15 +397,12 @@
   </div>
 </div>
 
-<div id="toastMessage" class="toast-notify"><i class="fas fa-check-circle"></i> <span id="toastText">Adicionado</span></div>
+<!-- ELEMENTO TOAST (mantido no HTML mas não será mais utilizado) -->
+<div id="toastMessage" class="toast-notify" style="display: none;"><i class="fas fa-check-circle"></i> <span id="toastText"></span></div>
 
 <script>
   (function(){
     "use strict";
-
-    // ----- CONFIGURAÇÃO DAS IMAGENS (ALTERE PARA O SEU REPOSITÓRIO) -----
-    const LOGO_URL = "https://raw.githubusercontent.com/SEU_USUARIO/SEU_REPO/main/ChatGPT%20Image%208%20de%20abr.%20de%202026%2C%2013_29_54.png";
-    // -----------------------------------------------------------------
 
     // Splash
     const splash = document.getElementById('splash');
@@ -418,7 +415,7 @@
       }, 600);
     }, 2500);
 
-    // ========== DADOS DO CARDÁPIO (CORRIGIDOS) ==========
+    // ========== DADOS DO CARDÁPIO ==========
     const menuData = {
       tamanhos: [
         { id:"tam_m", name:"🍛 Marmita M", desc:"Acompanha arroz, feijão e guarnição", price:20.00, popular: true },
@@ -429,30 +426,29 @@
         { id:"feij_verde", name:"🫘 Feijão Verde", desc:"Sabor do Nordeste", price:0 }
       ],
       guarnicoes: [
-        { id:"g1", name:" Arroz refogado", price:0 },
-        { id:"g2", name:" Arroz branco", price:0 },
-        { id:"g3", name:" Macarrão", price:0 },
-        { id:"g4", name:" Salada verde", price:0 },
-        { id:"g5", name:" Purê", price:0 },
-        { id:"g6", name:" Batata frita", price:0 },
-        { id:"g7", name:" Vinagrete", price:0 },
-        { id:"g8", name:" Farofa", price:0 }
+        { id:"g1", name:"🍚 Arroz refogado", price:0 },
+        { id:"g2", name:"🍚 Arroz branco", price:0 },
+        { id:"g3", name:"🍝 Macarrão", price:0 },
+        { id:"g4", name:"🥗 Salada verde", price:0 },
+        { id:"g5", name:"🥔 Purê", price:0 },
+        { id:"g6", name:"🍟 Batata frita", price:0 },
+        { id:"g7", name:"🥗 Vinagrete", price:0 },
+        { id:"g8", name:"🥄 Farofa", price:0 }
       ],
       carnes: [
-        { id:"c1", name:" Frango frito", price:0 },
-        { id:"c2", name:" Panquecas de carne", price:0 },
-        { id:"c3", name:" Strogonoff de frango", price:0 }
+        { id:"c1", name:"🍗 Frango frito", price:0 },
+        { id:"c2", name:"🥩 Panquecas de carne", price:0 },
+        { id:"c3", name:"🍲 Strogonoff de frango", price:0 }
       ],
       bebidas: [
-        { id:"b1", name:" Coca-Cola 1,5L", price:9.00 },
-        { id:"b2", name:" Coca-Cola 1L", price:8.00 },
-        { id:"b3", name:" Refrigerante lata", price:4.50 },
-        { id:"b4", name:" Suco citrus", price:3.00 },
-        { id:"b5", name:" Refrigerante 250ml", price:2.50 }
+        { id:"b1", name:"🥤 Coca-Cola 1,5L", price:9.00 },
+        { id:"b2", name:"🥤 Coca-Cola 1L", price:8.00 },
+        { id:"b3", name:"🥫 Refrigerante lata", price:4.50 },
+        { id:"b4", name:"🧃 Suco citrus", price:3.00 },
+        { id:"b5", name:"🧃 Refrigerante 250ml", price:2.50 }
       ]
     };
 
-    // Lista plana de todos os produtos para busca rápida
     const allProducts = Object.values(menuData).flat();
 
     // ========== CARRINHO ==========
@@ -465,21 +461,17 @@
     
     function updateCartUI() {
       const count = cart.reduce((a,i) => a + i.quantity, 0);
-      // Total considera apenas itens com preço > 0
       const total = cart.reduce((a,i) => a + (i.price * i.quantity), 0);
       document.getElementById("cartCount").innerText = count;
       document.getElementById("fabCount").innerText = count;
       document.getElementById("fabTotal").innerText = `R$ ${total.toFixed(2)}`;
     }
 
+    // TOAST REMOVIDO – função mantida vazia para evitar erros, mas não exibe mais nada
     function showToast(msg) {
-      const toast = document.getElementById("toastMessage");
-      document.getElementById("toastText").innerText = msg;
-      toast.classList.add("show");
-      setTimeout(() => toast.classList.remove("show"), 1500);
+      // Não faz nada – o usuário não quer notificações flutuantes
     }
 
-    // Atualiza quantidade do produto no carrinho
     function setProductQuantity(product, delta) {
       const existing = cart.find(item => item.id === product.id);
       if (existing) {
@@ -488,7 +480,6 @@
           cart = cart.filter(item => item.id !== product.id);
         }
       } else if (delta > 0) {
-        // Garante que o preço seja número (0 para complementos)
         cart.push({ ...product, price: product.price || 0, quantity: delta });
       }
       saveCart();
@@ -510,7 +501,6 @@
       const qty = getProductQuantity(product.id);
       const popularBadge = product.popular ? '<span class="badge-popular"><i class="fas fa-fire"></i> Mais pedido</span>' : '';
       
-      // Exibição do preço: se for zero, mostra "Complemento"
       const priceDisplay = product.price === 0 
         ? '<span class="product-price complemento">➕ Complemento</span>' 
         : `<span class="product-price">R$ ${product.price.toFixed(2)}</span>`;
@@ -553,7 +543,6 @@
       html += renderCategory('🥤 Bebidas', menuData.bebidas, 'bebidas');
       document.getElementById("menuContent").innerHTML = html;
 
-      // Event listeners para botões de adicionar/remover
       document.querySelectorAll('.removerQtdeOpcao').forEach(btn => {
         btn.addEventListener('click', (e) => {
           e.stopPropagation();
@@ -563,7 +552,7 @@
             const currentQty = getProductQuantity(id);
             if (currentQty > 0) {
               setProductQuantity(product, -1);
-              showToast(`Removido: ${product.name}`);
+              // Nenhum toast é exibido
             }
           }
         });
@@ -576,7 +565,7 @@
           const product = allProducts.find(p => p.id === id);
           if (product) {
             setProductQuantity(product, 1);
-            showToast(`Adicionado: ${product.name}`);
+            // Nenhum toast é exibido
           }
         });
       });
@@ -606,7 +595,7 @@
       const current = h*60+m;
       const isOpen = current >= openTotal && current <= closeTotal;
       const badge = document.getElementById("statusBadge");
-      badge.innerHTML = isOpen ? " Aberto agora • 11h às 14h30" : " Fechado • Abre às 11h";
+      badge.innerHTML = isOpen ? "🟢 Aberto agora • 11h às 14h30" : "🔴 Fechado • Abre às 11h";
       badge.className = `status-badge ${isOpen ? 'status-open' : 'status-closed'}`;
     }
 
@@ -769,7 +758,6 @@
       document.getElementById("carouselLeft").addEventListener("click", prevSlide);
       document.getElementById("carouselRight").addEventListener("click", nextSlide);
 
-      // Modais
       const cartModal = document.getElementById("cartModal");
       const checkoutModal = document.getElementById("checkoutModal");
       
@@ -784,7 +772,7 @@
       
       document.getElementById("checkoutBtnModal").onclick = () => {
         if(cart.length === 0) { 
-          showToast("Carrinho vazio"); 
+          alert("Seu carrinho está vazio."); 
           return; 
         }
         cartModal.style.display = "none"; 
@@ -799,7 +787,7 @@
         const addr = document.getElementById("clientAddress").value.trim();
         const obs = document.getElementById("clientObs").value.trim();
         if(!name || !phone || !addr) { 
-          showToast("Preencha nome, telefone e endereço"); 
+          alert("Preencha nome, telefone e endereço."); 
           return; 
         }
         
@@ -824,18 +812,12 @@
         saveCart(); 
         checkoutModal.style.display = "none";
         renderFullMenu();
-        showToast("Pedido enviado!");
       };
 
       document.getElementById("heroMenuBtn").onclick = () => 
         document.getElementById("menuSection").scrollIntoView({behavior:"smooth"});
       
       updateCartUI();
-      
-      // Aplica o logo correto nos elementos de imagem (caso os placeholders ainda estejam)
-      document.querySelectorAll('.splash-logo, .header-logo-img').forEach(img => {
-        img.src = LOGO_URL;
-      });
     }
 
     init();
