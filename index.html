@@ -921,8 +921,8 @@
         { id:"tam_g", name:"🍛 Marmita G", desc:"Mais comida, mais amor", price:25.00, image:"" }
       ],
       feijoes: [
-        { id:"feij_carioca", name:"🫘 Feijão Carioca", desc:"Tempero caseiro", price:3.00 },
-        { id:"feij_verde", name:"🫘 Feijão Verde", desc:"Sabor do Nordeste", price:3.00 }
+        { id:"feij_carioca", name:" Feijão Carioca", desc:"Tempero caseiro", price:3.00 },
+        { id:"feij_verde", name:" Feijão Verde", desc:"Sabor do Nordeste", price:3.00 }
       ],
       guarnicoes: [
         { id:"g1", name:" Arroz refogado", price:3.50 },
@@ -1094,15 +1094,15 @@
       const current = h*60+m;
       const isOpen = current >= openTotal && current <= closeTotal;
       const badge = document.getElementById("statusBadge");
-      badge.innerHTML = isOpen ? "🟢 Aberto agora • 11h às 14h30" : "🔴 Fechado • Abre às 11h";
+      badge.innerHTML = isOpen ? " Aberto agora • 11h às 14h30" : " Fechado • Abre às 11h";
       badge.className = `status-badge ${isOpen ? 'status-open' : 'status-closed'}`;
     }
 
     // Carrossel
     const slidesData = [
-      [{ name:"Marmita M", price:"R$ 20,00", image:"https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=200", tag:"🔥 Popular" },{ name:"Marmita G", price:"R$ 25,00", image:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=200", tag:"🍗 Família" }],
-      [{ name:"Frango Frito", price:"R$ 8,00", image:"https://images.unsplash.com/photo-1600891964092-4316c288032e?w=200", tag:"🍗 Crocante" },{ name:"Strogonoff", price:"R$ 10,00", image:"https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=200", tag:"🥄 Cremoso" }],
-      [{ name:"Suco Citrus", price:"R$ 3,00", image:"https://images.unsplash.com/photo-1561758033-d89a9ad46330?w=200", tag:"🥤 Natural" },{ name:"Coca 1,5L", price:"R$ 9,00", image:"https://images.unsplash.com/photo-1554866585-cd94860890b7?w=200", tag:"⭐ Refrescante" }]
+      [{ name:"Marmita M", price:"R$ 20,00", image:"https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=200", tag:" Popular" },{ name:"Marmita G", price:"R$ 25,00", image:"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=200", tag:"🍗 Família" }],
+      [{ name:"Frango Frito", price:"R$ 8,00", image:"https://images.unsplash.com/photo-1600891964092-4316c288032e?w=200", tag:" Crocante" },{ name:"Strogonoff", price:"R$ 10,00", image:"https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=200", tag:"🥄 Cremoso" }],
+      [{ name:"Suco Citrus", price:"R$ 3,00", image:"https://images.unsplash.com/photo-1561758033-d89a9ad46330?w=200", tag:" Natural" },{ name:"Coca 1,5L", price:"R$ 9,00", image:"https://images.unsplash.com/photo-1554866585-cd94860890b7?w=200", tag:"⭐ Refrescante" }]
     ];
     let currentSlideIdx = 0, autoInterval;
     function buildCarousel() {
