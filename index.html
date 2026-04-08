@@ -47,6 +47,62 @@
       line-height: 1.5;
     }
 
+    /* ========== SPLASH SCREEN ========== */
+    #splash {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+    .splash-content {
+      text-align: center;
+      padding: 20px;
+      max-width: 90%;
+    }
+    .splash-logo {
+      max-width: 280px;
+      width: 100%;
+      height: auto;
+      margin-bottom: 32px;
+      border-radius: 32px;
+      box-shadow: var(--shadow-md);
+    }
+    .enter-btn {
+      background: var(--primary);
+      border: none;
+      color: white;
+      font-weight: 700;
+      font-size: 1.2rem;
+      padding: 14px 40px;
+      border-radius: 60px;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.2s;
+      box-shadow: var(--shadow-sm);
+      font-family: 'Inter', sans-serif;
+    }
+    .enter-btn:hover {
+      background: var(--primary-hover);
+      transform: scale(1.02);
+    }
+
+    /* Conteúdo principal inicialmente oculto */
+    #mainContent {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    #mainContent.visible {
+      display: block;
+      opacity: 1;
+    }
+
     /* scrollbar neutra */
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: #eaeaea; }
@@ -128,11 +184,8 @@
       justify-content: center;
       transition: transform 0.2s ease;
     }
-    .cart-pop {
-      transform: scale(1.2);
-    }
 
-    /* Hero section vermelha */
+    /* Hero section */
     .hero {
       background-color: var(--bg-primary);
       padding: 48px 24px 64px;
@@ -184,7 +237,6 @@
       background: #f0f0f0;
       transform: translateY(-1px);
     }
-    .btn-primary-red:active { transform: scale(0.97); }
     .btn-whatsapp {
       background: #25d366;
       color: white;
@@ -198,7 +250,24 @@
       object-fit: cover;
     }
 
-    /* Seções de conteúdo (fundos brancos) */
+    /* Imagem principal (logo oficial) */
+    .main-logo-container {
+      text-align: center;
+      background-color: var(--bg-primary);
+      padding: 20px 24px 0 24px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+    .official-logo {
+      max-width: 240px;
+      width: 100%;
+      border-radius: 28px;
+      box-shadow: var(--shadow-sm);
+      background: white;
+      padding: 8px;
+    }
+
+    /* Seções de conteúdo */
     .section {
       background-color: var(--bg-secondary);
       padding: 56px 24px;
@@ -224,7 +293,7 @@
       font-weight: 600;
     }
 
-    /* Cards estilo iFood (brancos) */
+    /* Cards cardápio */
     .products-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
@@ -245,25 +314,11 @@
       box-shadow: var(--shadow-md);
       border-color: var(--primary);
     }
-    .badge {
-      position: absolute;
-      top: 14px;
-      left: 14px;
-      background: var(--primary);
-      color: white;
-      font-size: 0.7rem;
-      font-weight: 700;
-      padding: 4px 12px;
-      border-radius: 30px;
-      z-index: 2;
-    }
-    .badge-hot {
-      background: #f97316;
-    }
     .product-img {
       width: 100%;
-      height: 170px;
+      height: 150px;
       object-fit: cover;
+      background: #f7f7f7;
     }
     .product-info {
       padding: 18px;
@@ -307,8 +362,8 @@
       color: white;
     }
 
-    /* Features */
-    .features-grid {
+    /* Features, reviews */
+    .features-grid, .review-grid {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
@@ -324,26 +379,6 @@
       color: var(--primary);
       margin-bottom: 12px;
     }
-
-    /* Storytelling */
-    .story-card {
-      background: var(--bg-secondary);
-      border-radius: 24px;
-      padding: 40px 32px;
-      text-align: center;
-      max-width: 780px;
-      margin: 0 auto;
-      border: 1px solid var(--border-light);
-      box-shadow: var(--shadow-sm);
-    }
-
-    /* Reviews */
-    .review-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 28px;
-      justify-content: center;
-    }
     .review-card {
       background: var(--bg-secondary);
       border-radius: 20px;
@@ -354,52 +389,63 @@
     }
     .stars { color: #ffb800; margin-bottom: 12px; letter-spacing: 2px; }
 
-    /* Oferta especial */
-    .flash-offer {
-      background: #fff5f5;
-      border-radius: 24px;
-      margin: 20px;
-      padding: 36px 24px;
-      text-align: center;
-      border: 1px solid #ffe0e0;
-    }
-
-    /* ========== CARROSSEL ========== */
+    /* ========== CARROSSEL MELHORADO (AUTOPLAY + SETAS) ========== */
     .carousel-section {
       background: var(--bg-secondary);
       padding: 0 24px 40px 24px;
       max-width: 1280px;
       margin: 0 auto;
     }
+    .carousel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
     .carousel-title {
       font-size: 1.8rem;
       font-weight: 700;
-      margin-bottom: 24px;
       color: var(--text-dark);
     }
-    .carousel-container {
+    .status-badge {
+      background: #f0f0f0;
+      padding: 8px 16px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    .status-open {
+      background: #22c55e20;
+      color: #15803d;
+      border-left: 4px solid #22c55e;
+    }
+    .status-closed {
+      background: #ef444420;
+      color: #b91c1c;
+      border-left: 4px solid #ef4444;
+    }
+    .carousel-wrapper {
       position: relative;
-      display: flex;
-      align-items: center;
+      overflow: hidden;
+      border-radius: 20px;
     }
     .carousel-track {
       display: flex;
-      overflow-x: auto;
-      scroll-behavior: smooth;
+      transition: transform 0.4s ease-in-out;
+      will-change: transform;
+    }
+    .carousel-slide {
+      flex: 0 0 100%;
+      display: flex;
       gap: 20px;
-      padding: 8px 4px 20px 4px;
-      scrollbar-width: thin;
-      -webkit-overflow-scrolling: touch;
-    }
-    .carousel-track::-webkit-scrollbar {
-      height: 6px;
-    }
-    .carousel-track::-webkit-scrollbar-thumb {
-      background: var(--primary);
-      border-radius: 10px;
+      padding: 8px 4px;
+      justify-content: center;
+      flex-wrap: wrap;
     }
     .carousel-card {
-      flex: 0 0 260px;
+      flex: 1 1 240px;
+      max-width: 260px;
       background: var(--bg-secondary);
       border-radius: var(--radius-card);
       border: 1px solid var(--border-light);
@@ -439,6 +485,8 @@
       justify-content: center;
       cursor: pointer;
       position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
       z-index: 2;
       box-shadow: var(--shadow-sm);
       transition: 0.2s;
@@ -448,14 +496,10 @@
       color: white;
       border-color: var(--primary);
     }
-    .carousel-btn-left {
-      left: -12px;
-    }
-    .carousel-btn-right {
-      right: -12px;
-    }
+    .carousel-btn-left { left: 12px; }
+    .carousel-btn-right { right: 12px; }
 
-    /* ========== HORÁRIOS ========== */
+    /* Horários */
     .hours-section {
       background: var(--bg-secondary);
       padding: 40px 24px;
@@ -477,18 +521,11 @@
       border-radius: 16px;
       border: 1px solid var(--border-light);
     }
-    .hour-day {
-      font-weight: 600;
-    }
-    .hour-time {
-      color: var(--text-secondary);
-    }
-    .hour-closed {
-      color: var(--primary);
-      font-weight: 600;
-    }
+    .hour-day { font-weight: 600; }
+    .hour-time { color: var(--text-secondary); }
+    .hour-closed { color: var(--primary); font-weight: 600; }
 
-    /* Modais */
+    /* Modal, Toast, Footer */
     .modal {
       display: none;
       position: fixed;
@@ -506,22 +543,16 @@
       max-width: 520px;
       border-radius: 28px;
       padding: 28px;
-      border: none;
-      box-shadow: var(--shadow-md);
     }
     input, select {
       background: #f9f9f9;
       border: 1px solid var(--border-light);
       padding: 14px;
       border-radius: 24px;
-      color: var(--text-dark);
-      font-family: 'Inter', sans-serif;
       width: 100%;
       margin: 8px 0;
+      font-family: 'Inter', sans-serif;
     }
-    input:focus, select:focus { outline: none; border-color: var(--primary); }
-
-    /* Toast */
     .toast-notify {
       position: fixed;
       bottom: 24px;
@@ -539,7 +570,6 @@
       z-index: 3000;
       transition: transform 0.25s ease;
       pointer-events: none;
-      font-size: 0.9rem;
     }
     .toast-notify.show { transform: translateX(-50%) translateY(0); }
     footer {
@@ -548,10 +578,19 @@
       background: var(--bg-primary);
       color: white;
     }
+    .contact-delivery {
+      background: #fff5f5;
+      border-radius: 24px;
+      padding: 28px;
+      text-align: center;
+      margin: 20px auto;
+      max-width: 600px;
+      border: 1px solid #ffe0e0;
+    }
     @media (max-width: 700px) {
       .hero-content h1 { font-size: 2rem; }
       .products-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
-      .section { padding: 40px 16px; }
+      .carousel-slide { flex-wrap: wrap; }
       .carousel-card { flex: 0 0 220px; }
     }
     @media (max-width: 480px) {
@@ -561,262 +600,189 @@
 </head>
 <body>
 
-<header class="header">
-  <div class="logo-area">
-    <i class="fas fa-cloud-moon logo-icon"></i>
-    <span class="logo-text">Maná do Céu</span>
-  </div>
-  <div class="nav-buttons">
-    <button class="btn-outline-light" id="scrollToMenuBtn"><i class="fas fa-utensils"></i> Cardápio</button>
-    <div class="cart-icon" id="cartIcon">
-      <i class="fas fa-shopping-bag"></i>
-      <span class="cart-count" id="cartCount">0</span>
-    </div>
-  </div>
-</header>
-
-<main>
-  <div class="hero">
-    <div class="hero-content">
-      <h1>Maná do Céu</h1>
-      <div class="hero-tagline">🍲 Sabor que conecta</div>
-      <p class="hero-desc">Comida feita na hora, entregue quentinha. Peça online e receba em casa.</p>
-      <div class="btn-group">
-        <button class="btn-primary-red" id="heroMenuBtn"><i class="fas fa-list"></i> Ver cardápio</button>
-        <button class="btn-primary-red btn-whatsapp" id="heroWhatsBtn"><i class="fab fa-whatsapp"></i> WhatsApp</button>
-      </div>
-    </div>
-    <div class="hero-image">
-      <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&auto=format" alt="Marmita">
-    </div>
-  </div>
-
-  <!-- CARROSSEL DE DESTAQUES -->
-  <div class="carousel-section">
-    <h2 class="carousel-title">🍽️ Destaques da semana</h2>
-    <div class="carousel-container">
-      <button class="carousel-btn carousel-btn-left" id="carouselLeft"><i class="fas fa-chevron-left"></i></button>
-      <div class="carousel-track" id="carouselTrack">
-        <!-- Cards serão inseridos via JS -->
-      </div>
-      <button class="carousel-btn carousel-btn-right" id="carouselRight"><i class="fas fa-chevron-right"></i></button>
-    </div>
-  </div>
-
-  <div id="menuSection" class="section">
-    <h2 class="section-title">Nosso cardápio</h2>
-    <p class="section-sub">Escolha seu prato e personalize</p>
-    <div id="menuContent">
-      <div class="category">
-        <h3>🔥 Prato do Dia</h3>
-        <div class="products-grid" id="dishDayContainer"></div>
-      </div>
-      <div class="category">
-        <h3>🥩 Proteínas</h3>
-        <div class="products-grid" id="proteinContainer"></div>
-      </div>
-      <div class="category">
-        <h3>🥗 Acompanhamentos</h3>
-        <div class="products-grid" id="sidesContainer"></div>
-      </div>
-      <div class="category">
-        <h3>➕ Extras & Bebidas</h3>
-        <div class="products-grid" id="extrasContainer"></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2 class="section-title">Por que escolher a gente?</h2>
-    <div class="features-grid">
-      <div class="feature-item"><i class="fas fa-fire feature-icon"></i><h3>Pronto em minutos</h3><p>Agilidade e qualidade</p></div>
-      <div class="feature-item"><i class="fas fa-leaf feature-icon"></i><h3>Ingredientes selecionados</h3><p>Sabor e frescor</p></div>
-      <div class="feature-item"><i class="fas fa-motorcycle feature-icon"></i><h3>Entrega rápida</h3><p>Quentinho na sua porta</p></div>
-      <div class="feature-item"><i class="fas fa-chart-line feature-icon"></i><h3>Mais pedido da região</h3><p>Milhares de pedidos felizes</p></div>
-    </div>
-  </div>
-
-  <div class="section">
-    <div class="story-card">
-      <i class="fas fa-cloud-sun" style="font-size: 48px; color: var(--primary);"></i>
-      <h3 style="margin: 16px 0; font-size: 1.8rem;">Maná do Céu Delivery</h3>
-      <p>Nascemos para entregar sabor e aconchego. Cada prato é preparado com ingredientes frescos e o cuidado que você merece. Peça online e tenha uma experiência completa.</p>
-    </div>
-  </div>
-
-  <div class="section">
-    <h2 class="section-title">Aprovado por quem pede</h2>
-    <div class="review-grid">
-      <div class="review-card"><div class="stars">★★★★★</div><p>“Comida maravilhosa, parece feita em casa!”</p><strong>- Mariana S.</strong></div>
-      <div class="review-card"><div class="stars">★★★★★</div><p>“Melhor custo-benefício, entrega rápida.”</p><strong>- Carlos M.</strong></div>
-      <div class="review-card"><div class="stars">★★★★★</div><p>“O frango grelhado é divino, nota 10!”</p><strong>- Fernanda L.</strong></div>
-    </div>
-  </div>
-
-  <div class="flash-offer">
-    <span class="badge" style="position: relative; top:0; left:0; display: inline-block;">🔥 MAIS PEDIDO</span>
-    <h3 style="margin: 12px 0;">Marmita completa + suco natural</h3>
-    <p style="font-size: 2rem; font-weight: 800; color: var(--primary);">R$ 22,90</p>
-    <button id="comboBtn" class="btn-primary-red" style="margin-top: 12px;">Adicionar combo</button>
-  </div>
-
-  <!-- SEÇÃO DE HORÁRIOS -->
-  <div class="hours-section">
-    <h2 class="section-title">Horário de funcionamento</h2>
-    <div class="hours-grid" id="hoursGrid"></div>
-  </div>
-</main>
-
-<footer>
-  <p>Maná do Céu Delivery • CNPJ: 37.XXX.829/0002-54</p>
-  <p style="font-size: 0.8rem;">Peça pelo app ou site • Entrega rápida</p>
-</footer>
-
-<!-- Modais -->
-<div id="cartModal" class="modal">
-  <div class="modal-content">
-    <h3><i class="fas fa-shopping-bag"></i> Seu carrinho</h3>
-    <div id="cartItemsList" style="margin: 16px 0;"></div>
-    <hr style="border-color: #e5e5e5;">
-    <p><strong>Total: R$ <span id="cartTotal">0.00</span></strong></p>
-    <button id="checkoutBtnModal" class="btn-primary-red" style="width:100%; margin-top:12px;">Finalizar pedido</button>
-    <button id="closeCartModalBtn" class="btn-outline-light" style="width:100%; margin-top:8px; background:transparent; color:var(--primary); border-color:var(--primary);">Fechar</button>
+<!-- SPLASH SCREEN (Boas-vindas) -->
+<div id="splash">
+  <div class="splash-content">
+    <!-- Logo oficial carregado do GitHub (SUBSTITUA A URL PELA IMAGEM REAL) -->
+    <img class="splash-logo" src="https://raw.githubusercontent.com/seu-usuario/repo/main/Foto%20LogoOficial.png" alt="Maná do Céu" onerror="this.src='https://placehold.co/400x400?text=Logo+Oficial'">
+    <button class="enter-btn" id="enterBtn">Entrar <i class="fas fa-arrow-right"></i></button>
   </div>
 </div>
 
-<div id="checkoutModal" class="modal">
-  <div class="modal-content">
-    <h3>📋 Finalizar pedido</h3>
-    <input type="text" id="clientName" placeholder="Seu nome completo">
-    <input type="text" id="clientAddress" placeholder="Endereço completo">
-    <select id="paymentMethod">
-      <option>Pix (5% OFF)</option><option>Cartão crédito</option><option>Dinheiro</option>
-    </select>
-    <button id="finalizeWhatsBtn" class="btn-primary-red btn-whatsapp" style="width:100%; margin:12px 0;"><i class="fab fa-whatsapp"></i> Enviar pedido</button>
-    <button id="closeCheckoutModal" class="btn-outline-light" style="width:100%; background:transparent; color:var(--primary); border-color:var(--primary);">Voltar</button>
-  </div>
+<!-- CONTEÚDO PRINCIPAL (inicialmente oculto) -->
+<div id="mainContent">
+  <header class="header">
+    <div class="logo-area">
+      <i class="fas fa-cloud-moon logo-icon"></i>
+      <span class="logo-text">Maná do Céu</span>
+    </div>
+    <div class="nav-buttons">
+      <button class="btn-outline-light" id="scrollToMenuBtn"><i class="fas fa-utensils"></i> Cardápio</button>
+      <div class="cart-icon" id="cartIcon">
+        <i class="fas fa-shopping-bag"></i>
+        <span class="cart-count" id="cartCount">0</span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Imagem principal (Logo oficial em destaque) -->
+    <div class="main-logo-container">
+      <img class="official-logo" src="https://raw.githubusercontent.com/seu-usuario/repo/main/Foto%20LogoOficial.png" alt="Logo Maná do Céu" onerror="this.src='https://placehold.co/300x300?text=Maná+do+Céu'">
+    </div>
+
+    <div class="hero">
+      <div class="hero-content">
+        <h1>Maná do Céu</h1>
+        <div class="hero-tagline">🍽️ Sabor que conecta</div>
+        <p class="hero-desc">Comida caseira, ingredientes selecionados. Peça agora mesmo!</p>
+        <div class="btn-group">
+          <button class="btn-primary-red" id="heroMenuBtn"><i class="fas fa-list"></i> Ver cardápio</button>
+          <button class="btn-primary-red btn-whatsapp" id="heroWhatsBtn"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&auto=format" alt="Marmita">
+      </div>
+    </div>
+
+    <!-- CARROSSEL DINÂMICO + STATUS ABERTO/FECHADO -->
+    <div class="carousel-section">
+      <div class="carousel-header">
+        <h2 class="carousel-title">🍽️ Destaques da semana</h2>
+        <div id="statusBadge" class="status-badge">🟢 Carregando...</div>
+      </div>
+      <div class="carousel-wrapper">
+        <button class="carousel-btn carousel-btn-left" id="carouselLeft"><i class="fas fa-chevron-left"></i></button>
+        <div class="carousel-track" id="carouselTrack">
+          <!-- Slides serão preenchidos dinamicamente -->
+        </div>
+        <button class="carousel-btn carousel-btn-right" id="carouselRight"><i class="fas fa-chevron-right"></i></button>
+      </div>
+    </div>
+
+    <!-- CARDÁPIO ATUALIZADO (Marmitaria Maná do Céu) -->
+    <div id="menuSection" class="section">
+      <h2 class="section-title">🍽️ Marmitaria Maná do Céu</h2>
+      <p class="section-sub">Escolha os itens e monte seu pedido</p>
+      <div id="menuContent">
+        <!-- As categorias serão injetadas via JS -->
+      </div>
+    </div>
+
+    <!-- Features -->
+    <div class="section">
+      <h2 class="section-title">Por que escolher a gente?</h2>
+      <div class="features-grid">
+        <div class="feature-item"><i class="fas fa-fire feature-icon"></i><h3>Pronto em minutos</h3><p>Agilidade e qualidade</p></div>
+        <div class="feature-item"><i class="fas fa-leaf feature-icon"></i><h3>Ingredientes selecionados</h3><p>Sabor e frescor</p></div>
+        <div class="feature-item"><i class="fas fa-motorcycle feature-icon"></i><h3>Entrega rápida</h3><p>Quentinho na sua porta</p></div>
+        <div class="feature-item"><i class="fas fa-chart-line feature-icon"></i><h3>Mais pedido da região</h3><p>Milhares de pedidos felizes</p></div>
+      </div>
+    </div>
+
+    <!-- Reviews -->
+    <div class="section">
+      <h2 class="section-title">Aprovado por quem pede</h2>
+      <div class="review-grid">
+        <div class="review-card"><div class="stars">★★★★★</div><p>“Comida maravilhosa, parece feita em casa!”</p><strong>- Mariana S.</strong></div>
+        <div class="review-card"><div class="stars">★★★★★</div><p>“Melhor custo-benefício, entrega rápida.”</p><strong>- Carlos M.</strong></div>
+        <div class="review-card"><div class="stars">★★★★★</div><p>“O frango é divino, nota 10!”</p><strong>- Fernanda L.</strong></div>
+      </div>
+    </div>
+
+    <!-- Contato / Delivery -->
+    <div class="contact-delivery">
+      <i class="fas fa-motorcycle" style="font-size: 40px; color: var(--primary);"></i>
+      <h3 style="margin: 12px 0;">🚚 Delivery</h3>
+      <p style="font-size: 1.4rem; font-weight: 700;">📞 (83) 99631-1224</p>
+      <p>Peça também pelo WhatsApp ou diretamente no carrinho</p>
+    </div>
+
+    <!-- Horários -->
+    <div class="hours-section">
+      <h2 class="section-title">Horário de funcionamento</h2>
+      <div class="hours-grid" id="hoursGrid"></div>
+    </div>
+  </main>
+
+  <footer>
+    <p>Maná do Céu Delivery • CNPJ: 37.XXX.829/0002-54</p>
+    <p style="font-size: 0.8rem;">Peça pelo app ou site • Entrega rápida</p>
+  </footer>
 </div>
 
+<!-- Modais e Toast -->
+<div id="cartModal" class="modal"><div class="modal-content"><h3><i class="fas fa-shopping-bag"></i> Seu carrinho</h3><div id="cartItemsList" style="margin:16px 0;"></div><hr><p><strong>Total: R$ <span id="cartTotal">0.00</span></strong></p><button id="checkoutBtnModal" class="btn-primary-red" style="width:100%; margin-top:12px;">Finalizar pedido</button><button id="closeCartModalBtn" class="btn-outline-light" style="width:100%; margin-top:8px;">Fechar</button></div></div>
+<div id="checkoutModal" class="modal"><div class="modal-content"><h3>📋 Finalizar pedido</h3><input type="text" id="clientName" placeholder="Seu nome completo"><input type="text" id="clientAddress" placeholder="Endereço completo"><select id="paymentMethod"><option>Pix (5% OFF)</option><option>Cartão crédito</option><option>Dinheiro</option></select><button id="finalizeWhatsBtn" class="btn-primary-red btn-whatsapp" style="width:100%; margin:12px 0;"><i class="fab fa-whatsapp"></i> Enviar pedido</button><button id="closeCheckoutModal" class="btn-outline-light">Voltar</button></div></div>
 <div id="toastMessage" class="toast-notify"><i class="fas fa-check-circle" style="color: #22c55e;"></i> <span id="toastText">Adicionado</span></div>
 
 <script>
-  // ==================== DADOS DO CARDÁPIO (mantidos) ====================
-  const productsData = {
-    pratoDoDia: [
-      { id: "p1", name: "Marmita Executiva", desc: "Arroz, feijão, carne guisada, farofa e salada", price: 18.90, bestseller: true, image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=200" }
+  // ==================== ALTERAÇÕES REALIZADAS ====================
+  // 1. Splash screen com logo (imagem do GitHub) e botão "Entrar"
+  // 2. Status de funcionamento (aberto/fechado) baseado em horário (11h às 14:30)
+  // 3. Carrossel dinâmico com auto-play, setas e transição suave
+  // 4. Imagem principal (mesma logo) em destaque no topo
+  // 5. Cardápio totalmente substituído pelos novos itens (Marmitas, Feijões, Guarnições, Carnes, Bebidas)
+  // 6. Rodapé mantido, funcionalidades de carrinho, modal e WhatsApp preservadas
+  // ================================================================
+
+  // --- CONFIGURAÇÕES GLOBAIS ---
+  let cart = JSON.parse(localStorage.getItem("mana_cart")) || [];
+  let autoPlayInterval = null;
+
+  // Horário de funcionamento (11:00 às 14:30)
+  const OPEN_HOUR = 11;
+  const OPEN_MINUTE = 0;
+  const CLOSE_HOUR = 14;
+  const CLOSE_MINUTE = 30;
+
+  // Dados do carrossel (destaques)
+  const carouselSlidesData = [
+    [{ name: "Marmita M", price: "R$ 20,00", image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=200", tag: "🔥 Popular" }, { name: "Marmita G", price: "R$ 25,00", image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=200", tag: "🍗 Família" }],
+    [{ name: "Frango Frito", price: "R$ 8,00", image: "https://images.unsplash.com/photo-1600891964092-4316c288032e?w=200", tag: "🍗 Crocante" }, { name: "Strogonoff de Frango", price: "R$ 10,00", image: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=200", tag: "🥄 Cremoso" }],
+    [{ name: "Suco Citrus", price: "R$ 3,00", image: "https://images.unsplash.com/photo-1561758033-d89a9ad46330?w=200", tag: "🥤 Natural" }, { name: "Coca 1,5L", price: "R$ 9,00", image: "https://images.unsplash.com/photo-1554866585-cd94860890b7?w=200", tag: "⭐ Refrescante" }]
+  ];
+
+  // --- NOVO CARDÁPIO (estrutura completa) ---
+  const newMenu = {
+    tamanhos: [
+      { id: "tam_m", name: "🍛 Marmita M", desc: "Tamanho médio, ideal para um almoço", price: 20.00, image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=200" },
+      { id: "tam_g", name: "🍛 Marmita G", desc: "Grande, ótimo custo-benefício", price: 25.00, image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=200" }
     ],
-    proteins: [
-      { id: "prot1", name: "Carne Guisada", desc: "Cubos macios ao molho especial", price: 16.90, image: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=200" },
-      { id: "prot2", name: "Frango Grelhado", desc: "Filé suculento e temperado", price: 15.90, image: "https://images.unsplash.com/photo-1600891964092-4316c288032e?w=200" },
-      { id: "prot3", name: "Peixe Grelhado", desc: "Com ervas e limão", price: 18.90, image: "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=200" }
+    feijoes: [
+      { id: "feij_carioca", name: "🫘 Feijão Carioca", price: 3.00, desc: "Tradicional" },
+      { id: "feij_verde", name: "🫘 Feijão Verde", price: 3.00, desc: "Leve e saboroso" }
     ],
-    sides: [
-      { id: "side1", name: "Farofa Caseira", price: 4.50, desc: "Bacon e ovos" },
-      { id: "side2", name: "Salada Verde", price: 4.00, desc: "Alface, tomate" },
-      { id: "side3", name: "Macarrão alho e óleo", price: 5.00, desc: "Sabor caseiro" }
+    guarnicoes: [
+      { id: "guar_arroz_ref", name: "🍚 Arroz refogado", price: 3.50, desc: "" },
+      { id: "guar_arroz_branco", name: "🍚 Arroz branco", price: 3.00, desc: "" },
+      { id: "guar_macarrao", name: "🍝 Macarrão (espaguete)", price: 3.50, desc: "" },
+      { id: "guar_salada", name: "🥗 Salada verde", price: 3.00, desc: "" },
+      { id: "guar_pure", name: "🥔 Purê", price: 4.00, desc: "" },
+      { id: "guar_batata_frita", name: "🍟 Batata frita", price: 4.00, desc: "" },
+      { id: "guar_vinagrete", name: "🥗 Vinagrete", price: 2.50, desc: "" },
+      { id: "guar_farofa", name: "🍚 Farofa", price: 2.50, desc: "" }
     ],
-    extras: [
-      { id: "ext1", name: "Ovo Frito", price: 2.50, desc: "" },
-      { id: "ext2", name: "Suco Natural", price: 6.00, desc: "Laranja" },
-      { id: "ext3", name: "Refrigerante Lata", price: 5.00, desc: "Coca/Guaraná" }
+    carnes: [
+      { id: "carne_frango_frito", name: "🍗 Frango frito", price: 8.00, desc: "Crocante e temperado" },
+      { id: "carne_panqueca", name: "🥞 Panquecas de carne", price: 9.00, desc: "Recheio suculento" },
+      { id: "carne_strogonoff", name: "🍲 Strogonoff de frango", price: 10.00, desc: "Cremoso e delicioso" }
+    ],
+    bebidas: [
+      { id: "beb_coca15", name: "🥤 Coca-Cola 1,5L", price: 9.00, desc: "" },
+      { id: "beb_coca1l", name: "🥤 Coca-Cola 1L", price: 8.00, desc: "" },
+      { id: "beb_lata", name: "🥫 Refrigerante lata", price: 4.50, desc: "Coca/Guaraná" },
+      { id: "beb_suco", name: "🧃 Suco citrus", price: 3.00, desc: "Natural" },
+      { id: "beb_250ml", name: "🥤 Refrigerante 250ml", price: 2.50, desc: "" }
     ]
   };
 
-  // ==================== DADOS DO CARROSSEL ====================
-  const carouselItems = [
-    { name: "Marmita Executiva", price: "R$ 18,90", image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=200", tag: "🔥 Mais pedido" },
-    { name: "Combo Família", price: "R$ 54,90", image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=200", tag: "👨‍👩‍👧‍👦 3 marmitas" },
-    { name: "Marmita + Suco", price: "R$ 22,90", image: "https://images.unsplash.com/photo-1561758033-d89a9ad46330?w=200", tag: "🥤 Promoção" },
-    { name: "Frango Grelhado", price: "R$ 15,90", image: "https://images.unsplash.com/photo-1600891964092-4316c288032e?w=200", tag: "🍗 Saudável" },
-    { name: "Carne Guisada", price: "R$ 16,90", image: "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=200", tag: "🥩 Tradicional" }
-  ];
-
-  // ==================== HORÁRIOS ====================
-  const hoursData = [
-    { day: "Domingo", time: "Fechado", closed: true },
-    { day: "Segunda", time: "07:00 às 14:00", closed: false },
-    { day: "Terça", time: "07:00 às 14:00", closed: false },
-    { day: "Quarta", time: "07:00 às 14:00", closed: false },
-    { day: "Quinta", time: "07:00 às 14:00", closed: false },
-    { day: "Sexta", time: "07:00 às 14:00", closed: false },
-    { day: "Sábado", time: "07:00 às 14:00", closed: false }
-  ];
-
-  function renderHours() {
-    const container = document.getElementById("hoursGrid");
-    container.innerHTML = hoursData.map(h => `
-      <div class="hour-item">
-        <span class="hour-day">${h.day}</span>
-        <span class="${h.closed ? 'hour-closed' : 'hour-time'}">${h.time}</span>
-      </div>
-    `).join('');
-  }
-
-  // ==================== CARROSSEL ====================
-  function renderCarousel() {
-    const track = document.getElementById("carouselTrack");
-    track.innerHTML = carouselItems.map(item => `
-      <div class="carousel-card">
-        <img src="${item.image}" alt="${item.name}" loading="lazy">
-        <div class="carousel-card-info">
-          <div class="badge" style="position:relative; top:0; left:0; display:inline-block; margin-bottom:8px;">${item.tag}</div>
-          <h4>${item.name}</h4>
-          <div class="carousel-price">${item.price}</div>
-        </div>
-      </div>
-    `).join('');
-  }
-
-  function initCarousel() {
-    const track = document.getElementById("carouselTrack");
-    const leftBtn = document.getElementById("carouselLeft");
-    const rightBtn = document.getElementById("carouselRight");
-    if (leftBtn && rightBtn) {
-      leftBtn.addEventListener("click", () => {
-        track.scrollBy({ left: -280, behavior: "smooth" });
-      });
-      rightBtn.addEventListener("click", () => {
-        track.scrollBy({ left: 280, behavior: "smooth" });
-      });
-    }
-  }
-
-  // ==================== CARDÁPIO (renderização) ====================
-  function renderProductCard(p, type) {
-    let badgeHtml = '';
-    if (p.bestseller) badgeHtml = '<div class="badge badge-hot">🔥 Mais pedido</div>';
-    return `
-      <div class="product-card" data-id="${p.id}">
-        ${badgeHtml}
-        <img class="product-img" src="${p.image || 'https://via.placeholder.com/200?text=Prato'}" alt="${p.name}" loading="lazy">
-        <div class="product-info">
-          <div class="product-name">${p.name}</div>
-          <div class="product-desc">${p.desc || ''}</div>
-          <div class="price-row">
-            <span class="product-price">R$ ${p.price.toFixed(2)}</span>
-            <button class="add-btn" data-product='${JSON.stringify(p)}'>Adicionar</button>
-          </div>
-        </div>
-      </div>
-    `;
-  }
-
-  function loadProducts() {
-    document.getElementById("dishDayContainer").innerHTML = productsData.pratoDoDia.map(p => renderProductCard(p, "dish")).join('');
-    document.getElementById("proteinContainer").innerHTML = productsData.proteins.map(p => renderProductCard(p, "protein")).join('');
-    document.getElementById("sidesContainer").innerHTML = productsData.sides.map(p => renderProductCard(p, "side")).join('');
-    document.getElementById("extrasContainer").innerHTML = productsData.extras.map(p => renderProductCard(p, "extra")).join('');
-  }
-
-  // ==================== CARRINHO (lógica mantida) ====================
-  let cart = JSON.parse(localStorage.getItem("mana_cart")) || [];
+  // Funções utilitárias
   function saveCart() { localStorage.setItem("mana_cart", JSON.stringify(cart)); updateCartUI(); }
   function updateCartUI() {
     const count = cart.reduce((acc,i) => acc + i.quantity, 0);
-    const countSpan = document.getElementById("cartCount");
-    countSpan.innerText = count;
-    countSpan.classList.add("cart-pop");
-    setTimeout(() => countSpan.classList.remove("cart-pop"), 200);
+    document.getElementById("cartCount").innerText = count;
   }
   function showToast(msg) {
     const toast = document.getElementById("toastMessage");
@@ -832,63 +798,157 @@
     showToast(`${product.name} adicionado!`);
   }
 
-  async function openCustomizationModal(baseProduct) {
-    const { value: choices } = await Swal.fire({
-      title: `Monte seu ${baseProduct.name}`,
-      html: `
-        <div style="text-align:left; color:#1a1a1a">
-          <label>🥩 Proteína:</label>
-          <select id="custom-protein" style="margin-bottom:12px; width:100%; background:#f9f9f9;">${productsData.proteins.map(p => `<option value='${JSON.stringify(p)}'>${p.name} + R$ ${p.price.toFixed(2)}</option>`).join('')}</select>
-          <label>🥗 Acompanhamento:</label>
-          <select id="custom-side" style="margin-bottom:12px; width:100%; background:#f9f9f9;">${productsData.sides.map(s => `<option value='${JSON.stringify(s)}'>${s.name} + R$ ${s.price.toFixed(2)}</option>`).join('')}</select>
-          <label>➕ Extra (opcional):</label>
-          <select id="custom-extra" style="width:100%; background:#f9f9f9;"><option value="null">Nenhum</option>${productsData.extras.map(e => `<option value='${JSON.stringify(e)}'>${e.name} + R$ ${e.price.toFixed(2)}</option>`).join('')}</select>
-        </div>
-      `,
-      background: "#ffffff",
-      confirmButtonText: "Adicionar",
-      showCancelButton: true,
-      preConfirm: () => {
-        const protein = JSON.parse(document.getElementById("custom-protein").value);
-        const side = JSON.parse(document.getElementById("custom-side").value);
-        const extraRaw = document.getElementById("custom-extra").value;
-        const extra = extraRaw !== "null" ? JSON.parse(extraRaw) : null;
-        return { protein, side, extra };
-      }
+  // Renderização do novo cardápio
+  function renderNewMenu() {
+    const menuDiv = document.getElementById("menuContent");
+    if(!menuDiv) return;
+    let html = '';
+    // Tamanhos
+    html += `<div class="category"><h3>🍛 Tamanhos das Marmitas</h3><div class="products-grid">${newMenu.tamanhos.map(p => renderProductCardSimple(p)).join('')}</div></div>`;
+    html += `<div class="category"><h3>🫘 Feijões</h3><div class="products-grid">${newMenu.feijoes.map(p => renderProductCardSimple(p)).join('')}</div></div>`;
+    html += `<div class="category"><h3>🍚 Guarnições</h3><div class="products-grid">${newMenu.guarnicoes.map(p => renderProductCardSimple(p)).join('')}</div></div>`;
+    html += `<div class="category"><h3>🍗 Carnes</h3><div class="products-grid">${newMenu.carnes.map(p => renderProductCardSimple(p)).join('')}</div></div>`;
+    html += `<div class="category"><h3>🥤 Bebidas</h3><div class="products-grid">${newMenu.bebidas.map(p => renderProductCardSimple(p)).join('')}</div></div>`;
+    menuDiv.innerHTML = html;
+
+    document.querySelectorAll(".add-btn").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        const prod = JSON.parse(btn.getAttribute("data-product"));
+        addToCart(prod);
+      });
     });
-    if (choices) {
-      const total = baseProduct.price + choices.protein.price + choices.side.price + (choices.extra ? choices.extra.price : 0);
-      const customItem = {
-        id: `custom_${Date.now()}`,
-        name: `${baseProduct.name} (${choices.protein.name} + ${choices.side.name}${choices.extra ? ` + ${choices.extra.name}` : ''})`,
-        price: total,
-        quantity: 1
-      };
-      addToCart(customItem, 1);
+  }
+  function renderProductCardSimple(p) {
+    return `<div class="product-card"><img class="product-img" src="${p.image || 'https://via.placeholder.com/200?text=Prato'}" alt="${p.name}"><div class="product-info"><div class="product-name">${p.name}</div><div class="product-desc">${p.desc || ''}</div><div class="price-row"><span class="product-price">R$ ${p.price.toFixed(2)}</span><button class="add-btn" data-product='${JSON.stringify(p)}'>Adicionar</button></div></div></div>`;
+  }
+
+  // Status aberto/fechado
+  function checkOpenStatus() {
+    const now = new Date();
+    const currentHour = now.getHours();
+    const currentMinute = now.getMinutes();
+    const currentMinutesTotal = currentHour * 60 + currentMinute;
+    const openTotal = OPEN_HOUR * 60 + OPEN_MINUTE;
+    const closeTotal = CLOSE_HOUR * 60 + CLOSE_MINUTE;
+    const isOpen = currentMinutesTotal >= openTotal && currentMinutesTotal <= closeTotal;
+    const badgeDiv = document.getElementById("statusBadge");
+    if(isOpen) {
+      badgeDiv.innerHTML = "🟢 Aberto agora • Peça já!";
+      badgeDiv.className = "status-badge status-open";
+    } else {
+      badgeDiv.innerHTML = "🔴 Fechado no momento • Volte das 11h às 14h30";
+      badgeDiv.className = "status-badge status-closed";
     }
   }
 
-  document.addEventListener("click", (e) => {
-    if (e.target.classList.contains("add-btn")) {
-      const prod = JSON.parse(e.target.getAttribute("data-product"));
-      openCustomizationModal(prod);
-    }
+  // Carrossel dinâmico com auto-play
+  let currentSlide = 0;
+  let totalSlides = carouselSlidesData.length;
+  function buildCarousel() {
+    const track = document.getElementById("carouselTrack");
+    track.innerHTML = '';
+    carouselSlidesData.forEach((slideGroup, idx) => {
+      const slideDiv = document.createElement("div");
+      slideDiv.className = "carousel-slide";
+      slideDiv.style.flex = "0 0 100%";
+      slideDiv.style.display = "flex";
+      slideDiv.style.justifyContent = "center";
+      slideDiv.style.gap = "20px";
+      slideDiv.style.flexWrap = "wrap";
+      slideGroup.forEach(item => {
+        slideDiv.innerHTML += `<div class="carousel-card"><img src="${item.image}" alt="${item.name}"><div class="carousel-card-info"><div class="badge" style="position:relative; top:0; left:0; display:inline-block; margin-bottom:8px; background:#ea1d2c;">${item.tag}</div><h4>${item.name}</h4><div class="carousel-price">${item.price}</div></div></div>`;
+      });
+      track.appendChild(slideDiv);
+    });
+    updateCarouselTransform();
+  }
+  function updateCarouselTransform() {
+    const track = document.getElementById("carouselTrack");
+    if(track) track.style.transform = `translateX(-${currentSlide * 100}%)`;
+  }
+  function nextSlide() { currentSlide = (currentSlide + 1) % totalSlides; updateCarouselTransform(); resetAutoPlay(); }
+  function prevSlide() { currentSlide = (currentSlide - 1 + totalSlides) % totalSlides; updateCarouselTransform(); resetAutoPlay(); }
+  function startAutoPlay() { if(autoPlayInterval) clearInterval(autoPlayInterval); autoPlayInterval = setInterval(() => nextSlide(), 4000); }
+  function resetAutoPlay() { if(autoPlayInterval) { clearInterval(autoPlayInterval); startAutoPlay(); } }
+
+  // Horários de funcionamento fixos
+  function renderHours() {
+    const hoursData = [
+      { day: "Domingo", time: "Fechado", closed: true }, { day: "Segunda", time: "07:00 às 14:00", closed: false },
+      { day: "Terça", time: "07:00 às 14:00", closed: false }, { day: "Quarta", time: "07:00 às 14:00", closed: false },
+      { day: "Quinta", time: "07:00 às 14:00", closed: false }, { day: "Sexta", time: "07:00 às 14:00", closed: false },
+      { day: "Sábado", time: "07:00 às 14:00", closed: false }
+    ];
+    document.getElementById("hoursGrid").innerHTML = hoursData.map(h => `<div class="hour-item"><span class="hour-day">${h.day}</span><span class="${h.closed ? 'hour-closed' : 'hour-time'}">${h.time}</span></div>`).join('');
+  }
+
+  // Inicialização da splash screen e do site
+  document.getElementById("enterBtn").addEventListener("click", () => {
+    const splash = document.getElementById("splash");
+    const main = document.getElementById("mainContent");
+    splash.style.opacity = "0";
+    setTimeout(() => {
+      splash.style.display = "none";
+      main.classList.add("visible");
+    }, 600);
   });
 
-  document.getElementById("comboBtn")?.addEventListener("click", () => {
-    addToCart({ id: "combo_esp", name: "Marmita + Suco Especial", price: 22.90 }, 1);
-  });
+  // Função de inicialização principal
+  function initSite() {
+    renderNewMenu();
+    buildCarousel();
+    startAutoPlay();
+    checkOpenStatus();
+    setInterval(checkOpenStatus, 60000); // atualiza status a cada minuto
+    renderHours();
 
-  // Modais
-  const cartModal = document.getElementById("cartModal");
-  const cartIconDiv = document.getElementById("cartIcon");
-  const closeCartBtn = document.getElementById("closeCartModalBtn");
-  cartIconDiv.onclick = () => { renderCartModal(); cartModal.style.display = "flex"; };
-  closeCartBtn.onclick = () => cartModal.style.display = "none";
+    // Eventos carrossel
+    document.getElementById("carouselLeft").addEventListener("click", prevSlide);
+    document.getElementById("carouselRight").addEventListener("click", nextSlide);
+    // evitar conflito de toque (responsivo)
+    const trackElem = document.getElementById("carouselTrack");
+    let startX = 0;
+    trackElem.addEventListener("touchstart", (e) => { startX = e.touches[0].clientX; });
+    trackElem.addEventListener("touchend", (e) => {
+      if (!startX) return;
+      const endX = e.changedTouches[0].clientX;
+      if (endX < startX - 50) nextSlide();
+      if (endX > startX + 50) prevSlide();
+    });
+
+    // Modais e carrinho
+    const cartModal = document.getElementById("cartModal");
+    const closeCartBtn = document.getElementById("closeCartModalBtn");
+    document.getElementById("cartIcon").onclick = () => { renderCartModal(); cartModal.style.display = "flex"; };
+    closeCartBtn.onclick = () => cartModal.style.display = "none";
+    document.getElementById("checkoutBtnModal").onclick = () => {
+      if(cart.length===0){ showToast("Carrinho vazio"); return; }
+      cartModal.style.display = "none";
+      document.getElementById("checkoutModal").style.display = "flex";
+    };
+    document.getElementById("closeCheckoutModal").onclick = () => document.getElementById("checkoutModal").style.display = "none";
+    document.getElementById("finalizeWhatsBtn").onclick = () => {
+      const name = document.getElementById("clientName").value.trim();
+      const address = document.getElementById("clientAddress").value.trim();
+      const payment = document.getElementById("paymentMethod").value;
+      if(!name || !address){ showToast("Preencha nome e endereço"); return; }
+      let msg = `🍽️ *PEDIDO MANÁ DO CÉU* 🍽️%0A*Cliente:* ${name}%0A*Endereço:* ${address}%0A*Pagamento:* ${payment}%0A%0A*Itens:*%0A`;
+      let total = 0;
+      cart.forEach(i => { msg += `- ${i.name} x${i.quantity} = R$ ${(i.price * i.quantity).toFixed(2)}%0A`; total += i.price * i.quantity; });
+      msg += `%0A*Total: R$ ${total.toFixed(2)}*%0A🔔 Pedido via site`;
+      window.open(`https://wa.me/5583996311224?text=${msg}`, "_blank");
+      cart = []; saveCart(); document.getElementById("checkoutModal").style.display = "none";
+      Swal.fire({ title: "Pedido enviado!", text: "Em breve entraremos em contato", icon: "success", background: "#ffffff" });
+    };
+    document.getElementById("scrollToMenuBtn")?.addEventListener("click", () => document.getElementById("menuSection").scrollIntoView({ behavior: "smooth" }));
+    document.getElementById("heroMenuBtn")?.addEventListener("click", () => document.getElementById("menuSection").scrollIntoView({ behavior: "smooth" }));
+    document.getElementById("heroWhatsBtn")?.addEventListener("click", () => Swal.fire({ title: "Peça pelo WhatsApp", text: "Finalize o pedido no carrinho e envie direto", icon: "info" }));
+  }
+
   function renderCartModal() {
     const listDiv = document.getElementById("cartItemsList");
     let total = 0;
-    if (cart.length === 0) listDiv.innerHTML = "<p>Carrinho vazio</p>";
+    if(cart.length===0) listDiv.innerHTML = "<p>Carrinho vazio</p>";
     else {
       listDiv.innerHTML = "";
       cart.forEach((item, idx) => {
@@ -907,36 +967,8 @@
     });
   }
 
-  const checkoutModal = document.getElementById("checkoutModal");
-  document.getElementById("checkoutBtnModal").onclick = () => {
-    if (cart.length === 0) { showToast("Adicione itens ao carrinho"); return; }
-    cartModal.style.display = "none";
-    checkoutModal.style.display = "flex";
-  };
-  document.getElementById("closeCheckoutModal").onclick = () => checkoutModal.style.display = "none";
-  document.getElementById("finalizeWhatsBtn").onclick = () => {
-    const name = document.getElementById("clientName").value.trim();
-    const address = document.getElementById("clientAddress").value.trim();
-    const payment = document.getElementById("paymentMethod").value;
-    if (!name || !address) { showToast("Preencha nome e endereço"); return; }
-    let msg = `🍽️ *PEDIDO MANÁ DO CÉU* 🍽️%0A*Cliente:* ${name}%0A*Endereço:* ${address}%0A*Pagamento:* ${payment}%0A%0A*Itens:*%0A`;
-    let total = 0;
-    cart.forEach(i => { msg += `- ${i.name} x${i.quantity} = R$ ${(i.price * i.quantity).toFixed(2)}%0A`; total += i.price * i.quantity; });
-    msg += `%0A*Total: R$ ${total.toFixed(2)}*%0A🔔 Pedido via site`;
-    window.open(`https://wa.me/5511999999999?text=${msg}`, "_blank");
-    cart = []; saveCart(); checkoutModal.style.display = "none";
-    Swal.fire({ title: "Pedido enviado!", text: "Em breve entraremos em contato", icon: "success", background: "#ffffff", color: "#1a1a1a" });
-  };
-
-  document.getElementById("scrollToMenuBtn")?.addEventListener("click", () => document.getElementById("menuSection").scrollIntoView({ behavior: "smooth" }));
-  document.getElementById("heroMenuBtn")?.addEventListener("click", () => document.getElementById("menuSection").scrollIntoView({ behavior: "smooth" }));
-  document.getElementById("heroWhatsBtn")?.addEventListener("click", () => Swal.fire({ title: "Peça pelo WhatsApp", text: "Finalize o pedido no carrinho e envie direto", icon: "info", background: "#ffffff", color: "#1a1a1a" }));
-
-  // Inicialização
-  loadProducts();
-  renderCarousel();
-  initCarousel();
-  renderHours();
+  // Iniciar após splash (mas já deixamos preparado)
+  initSite();
   updateCartUI();
 </script>
 </body>
