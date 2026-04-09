@@ -13,14 +13,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   
   <style>
-    /* ========== ESTILOS COMPLETOS (mantidos como antes) ========== */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
       --primary: #D21B1B; --primary-dark: #8B0000; --secondary: #FFFFFF;
       --secondary-light: #000000; --background: #FFFFFF; --text-dark: #2C2C2C;
       --text-light: #777; --border-light: #f0f0f0;
       --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.08);
-      --shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.12);
+      --shadow-hover: 0 12px 24px rgba(0, 0, 0, 0.12);
       --radius-card: 16px; --radius-btn: 40px; --transition: all 0.2s ease;
     }
     body {
@@ -79,16 +78,14 @@
       box-shadow: 0 2px 6px rgba(0,0,0,0.2); border: 1.5px solid white;
     }
 
-    /* Banner */
+    /* Banner (sem imagem de fundo) */
     .hero-banner {
-      position: relative; background-color: var(--primary);
-      background-image: url('https://raw.githubusercontent.com/pertoojaapp-coder/ManadoCEU/main/ChatGPT%20Image%208%20de%20abr.%20de%202026%2C%2013_29_54.png');
-      background-size: 200px; background-repeat: no-repeat; background-position: 85% center;
+      position: relative; background: linear-gradient(145deg, #8B0000 0%, #a50f0f 100%);
       padding: 40px 24px 56px; margin-bottom: 0; isolation: isolate;
     }
     .hero-banner::before {
       content: ""; position: absolute; inset: 0;
-      background: linear-gradient(90deg, rgba(139,0,0,0.92) 0%, rgba(139,0,0,0.7) 60%, rgba(139,0,0,0.5) 100%);
+      background: radial-gradient(circle at 80% 50%, rgba(255,255,255,0.1) 0%, transparent 70%);
       z-index: 0;
     }
     .banner-content { position: relative; z-index: 2; max-width: 1280px; margin: 0 auto; }
@@ -100,8 +97,9 @@
       transition: var(--transition); display: inline-flex; align-items: center; gap: 10px;
       box-shadow: 0 8px 18px rgba(0,0,0,0.15); border: 1px solid rgba(255,255,255,0.2);
     }
+    .banner-cta:hover { background: #f0f0f0; transform: scale(1.02); }
 
-    /* Categorias e cards (mantidos) */
+    /* Categorias e cards */
     .categories-nav {
       background: white; padding: 16px 0 8px 0; position: sticky; top: 68px; z-index: 500;
       box-shadow: 0 2px 8px rgba(0,0,0,0.04); border-bottom: 1px solid var(--border-light);
@@ -116,6 +114,7 @@
       transition: var(--transition); flex-shrink: 0; box-shadow: 0 2px 4px rgba(0,0,0,0.02);
     }
     .cat-btn.active { background: var(--primary); color: white; }
+    .cat-btn:hover { background: #e0e0e0; }
     .section { background-color: var(--background); padding: 40px 20px; max-width: 1280px; margin: 0 auto; }
     .section-title { font-size: 1.8rem; margin-bottom: 8px; color: var(--primary); display: flex; align-items: center; gap: 10px; }
     .section-sub { color: var(--text-light); margin-bottom: 24px; }
@@ -130,11 +129,14 @@
       box-shadow: var(--shadow-card); display: flex; align-items: center;
       justify-content: space-between; flex-wrap: wrap;
     }
+    .product-card:hover {
+      box-shadow: var(--shadow-hover); transform: translateY(-3px);
+      border-color: var(--primary);
+    }
     .product-info { flex: 2 1 180px; }
     .product-name { font-weight: 700; font-size: 1.1rem; display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
     .product-desc { font-size: 0.85rem; color: var(--text-light); margin-bottom: 6px; }
     .product-price { font-weight: 700; color: var(--primary); font-size: 1.2rem; }
-    .product-price.complemento { color: #2c2c2c; font-size: 1rem; font-weight: 500; }
     .product-actions {
       display: flex; align-items: center; gap: 8px; background: #fafafa;
       padding: 4px 6px; border-radius: 40px; border: 1px solid #e0e0e0;
@@ -160,8 +162,8 @@
     .carousel-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 20px; }
     .carousel-title { font-size: 1.8rem; color: var(--primary); }
     .status-badge { padding: 6px 16px; border-radius: 60px; font-weight: 600; font-size: 0.85rem; }
-    .status-open { background: linear-gradient(135deg, #22c55e, #16a34a); color: #fff; font-weight: 600; box-shadow: 0 2px 6px rgba(34, 197, 94, 0.3); }
-    .status-closed { background: linear-gradient(135deg, #ef4444, #dc2626); color: #fff; font-weight: 600; box-shadow: 0 2px 6px rgba(239, 68, 68, 0.3); }
+    .status-open { background: linear-gradient(135deg, #22c55e, #16a34a); color: #fff; box-shadow: 0 2px 6px rgba(34, 197, 94, 0.3); }
+    .status-closed { background: linear-gradient(135deg, #ef4444, #dc2626); color: #fff; box-shadow: 0 2px 6px rgba(239, 68, 68, 0.3); }
     .carousel-container { position: relative; }
     .carousel-track { display: flex; transition: transform 0.5s cubic-bezier(0.2, 0.9, 0.4, 1); }
     .carousel-slide { flex: 0 0 100%; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; padding: 8px; }
@@ -169,6 +171,7 @@
       flex: 1 1 200px; max-width: 220px; background: white; border-radius: 20px;
       border: 1px solid #eee; transition: var(--transition); box-shadow: var(--shadow-card);
     }
+    .carousel-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
     .carousel-card img { width: 100%; height: 130px; object-fit: cover; border-radius: 20px 20px 0 0; }
     .carousel-card-info { padding: 16px; }
     .badge-card {
@@ -183,20 +186,28 @@
       box-shadow: 0 6px 14px rgba(0,0,0,0.1); transition: var(--transition);
       z-index: 5; color: var(--primary); font-size: 1.2rem;
     }
+    .carousel-btn:hover { background: var(--primary); color: white; }
     .carousel-btn-left { left: 12px; } .carousel-btn-right { right: 12px; }
     .carousel-dots { display: flex; justify-content: center; gap: 12px; margin-top: 24px; }
     .dot { width: 10px; height: 10px; background: #ccc; border-radius: 20px; transition: 0.2s; cursor: pointer; }
     .dot.active { background: var(--primary); width: 28px; }
+    .dot:hover { background: var(--primary); opacity: 0.7; }
 
     /* Features, reviews, horas, FAB, modais */
     .features-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin-top: 24px; }
-    .feature-item { text-align: center; max-width: 200px; }
+    .feature-item {
+      text-align: center; max-width: 200px; padding: 20px; border-radius: 24px;
+      transition: var(--transition); background: white; box-shadow: var(--shadow-card);
+    }
+    .feature-item:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
     .feature-icon { font-size: 40px; color: var(--primary); margin-bottom: 16px; }
     .review-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; }
     .review-card {
       background: #fafafa; border-radius: 24px; padding: 24px; width: 260px;
       box-shadow: var(--shadow-card); border: 1px solid #f1f1f1;
+      transition: var(--transition);
     }
+    .review-card:hover { transform: scale(1.02); box-shadow: var(--shadow-hover); }
     .contact-delivery {
       background: linear-gradient(145deg, #fff5f5, #fff); border-radius: 32px;
       padding: 32px; text-align: center; max-width: 600px; margin: 30px auto;
@@ -206,14 +217,20 @@
     .hour-item {
       display: flex; justify-content: space-between; padding: 14px 18px;
       background: #fafafa; border-radius: 20px; font-weight: 500;
+      transition: var(--transition); border: 1px solid transparent;
+    }
+    .hour-item:hover {
+      background: white; border-color: var(--primary);
+      transform: translateY(-2px); box-shadow: var(--shadow-card);
     }
     .cart-fab {
       position: fixed; bottom: 24px; right: 24px; background: var(--primary); color: white;
-      width: auto; min-width: 60px; height: 60px; border-radius: 40px;
+      min-width: 60px; height: 60px; border-radius: 40px;
       display: flex; align-items: center; justify-content: center;
       box-shadow: 0 8px 20px rgba(0,0,0,0.25); z-index: 999; cursor: pointer;
       border: 2px solid var(--secondary); padding: 0 20px; gap: 8px; transition: var(--transition);
     }
+    .cart-fab:hover { background: var(--primary-dark); transform: scale(1.03); }
     .cart-fab span { font-weight: 700; color: white; }
     .fab-count { background: var(--secondary); color: var(--primary); border-radius: 30px; padding: 2px 8px; font-weight: 800; }
     .modal {
@@ -232,12 +249,15 @@
       font-weight: 700; color: white; cursor: pointer; transition: var(--transition);
       width: 100%; font-size: 1rem;
     }
+    .btn-primary:hover { background: var(--primary-dark); }
     .btn-outline {
       background: transparent; border: 1.5px solid var(--primary); color: var(--primary);
       padding: 12px; border-radius: 40px; font-weight: 600; cursor: pointer;
       transition: var(--transition);
     }
+    .btn-outline:hover { background: var(--primary); color: white; }
     .btn-whatsapp { background: #25d366; color: white; }
+    .btn-whatsapp:hover { background: #1da851; }
     footer { text-align: center; padding: 32px 20px; background: var(--primary); color: white; }
     .form-input {
       width: 100%; padding: 14px 16px; margin: 8px 0; border-radius: 30px;
@@ -252,13 +272,11 @@
 <!-- SPLASH SCREEN -->
 <div id="splash">
   <div class="splash-content">
-    <!-- ************** COLE AQUI O LINK RAW DA SUA IMAGEM ************** -->
     <img class="splash-logo" 
-     src="https://drive.google.com/uc?export=view&id=1lsjQNAvNNkzmphKZiZteg_bzy6cQ5ZPh" 
-     alt="Maná do Céu" 
-     onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\' viewBox=\'0 0 200 200\'%3E%3Crect width=\'200\' height=\'200\' fill=\'%238B0000\'/%3E%3Ctext x=\'50%%\' y=\'55%%\' font-size=\'28\' font-family=\'Arial, sans-serif\' font-weight=\'bold\' fill=\'white\' text-anchor=\'middle\'%3EManá do Céu%3C/text%3E%3C/svg%3E';">
-
-<div class="welcome-title">Bem-vindo ao Maná do Céu</div>
+         src="https://i.ibb.co/84RG22KT/Chat-GPT-Image-8-de-abr-de-2026-13-29-54.png" 
+         alt="Maná do Céu" 
+         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\' viewBox=\'0 0 200 200\'%3E%3Crect width=\'200\' height=\'200\' fill=\'%238B0000\'/%3E%3Ctext x=\'50%%\' y=\'55%%\' font-size=\'28\' font-family=\'Arial, sans-serif\' font-weight=\'bold\' fill=\'white\' text-anchor=\'middle\'%3EManá do Céu%3C/text%3E%3C/svg%3E';">
+    <div class="welcome-title">Bem-vindo ao Maná do Céu</div>
     <div class="welcome-sub">Comida que acolhe, feita com propósito ❤️</div>
     <div class="spinner-modern"></div>
   </div>
@@ -268,10 +286,10 @@
 <div id="mainContent">
   <header class="app-header">
     <div class="brand-area">
-      <!-- ************** COLE AQUI O MESMO LINK RAW ************** -->
-      <div style="background:red;">
-  <img src="https://drive.google.com/uc?export=view&id=1lsjQNAvNNkzmphKZiZteg_bzy6cQ5ZPh" style="display:block;">
-</div>
+      <img class="header-logo-img" 
+           src="https://i.ibb.co/84RG22KT/Chat-GPT-Image-8-de-abr-de-2026-13-29-54.png" 
+           alt="Logo" 
+           onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'100\' height=\'100\' viewBox=\'0 0 100 100\'%3E%3Crect width=\'100\' height=\'100\' fill=\'%238B0000\'/%3E%3Ctext x=\'50%%\' y=\'55%%\' font-size=\'14\' font-family=\'Arial, sans-serif\' font-weight=\'bold\' fill=\'white\' text-anchor=\'middle\'%3EManá%3C/text%3E%3C/svg%3E';">
       <div class="brand-text">
         <span class="brand-name">Maná do Céu</span>
         <span class="brand-tagline"><i class="fas fa-heart" style="color: #D4AF37;"></i> Comida caseira com carinho</span>
@@ -353,6 +371,9 @@
 
     <div class="hours-section">
       <h2 class="section-title">🕒 Horário de funcionamento</h2>
+      <div style="display: flex; justify-content: center; margin-bottom: 20px;">
+        <div id="dynamicHoursBadge" style="background: var(--primary); color: white; padding: 8px 24px; border-radius: 60px; font-weight: 600;"></div>
+      </div>
       <div class="hours-grid" id="hoursGrid"></div>
     </div>
   </main>
@@ -415,30 +436,30 @@
         { id:"tam_g", name:"🍛 Marmita G", desc:"Mais comida, mais amor", price:25.00 }
       ],
       feijoes: [
-        { id:"feij_carioca", name:"🫘 Feijão Carioca", desc:"Tempero caseiro", price:0 },
-        { id:"feij_verde", name:"🫘 Feijão Verde", desc:"Sabor do Nordeste", price:0 }
+        { id:"feij_carioca", name:" Feijão Carioca", desc:"Tempero caseiro", price:0 },
+        { id:"feij_verde", name:" Feijão Verde", desc:"Sabor do Nordeste", price:0 }
       ],
       guarnicoes: [
-        { id:"g1", name:"🍚 Arroz refogado", price:0 },
-        { id:"g2", name:"🍚 Arroz branco", price:0 },
-        { id:"g3", name:"🍝 Macarrão", price:0 },
-        { id:"g4", name:"🥗 Salada verde", price:0 },
-        { id:"g5", name:"🥔 Purê", price:0 },
-        { id:"g6", name:"🍟 Batata frita", price:0 },
-        { id:"g7", name:"🥗 Vinagrete", price:0 },
-        { id:"g8", name:"🥄 Farofa", price:0 }
+        { id:"g1", name:" Arroz refogado", price:0 },
+        { id:"g2", name:" Arroz branco", price:0 },
+        { id:"g3", name:" Macarrão", price:0 },
+        { id:"g4", name:" Salada verde", price:0 },
+        { id:"g5", name:" Purê", price:0 },
+        { id:"g6", name:" Batata frita", price:0 },
+        { id:"g7", name:" Vinagrete", price:0 },
+        { id:"g8", name:" Farofa", price:0 }
       ],
       carnes: [
-        { id:"c1", name:"🍗 Frango frito", price:0 },
-        { id:"c2", name:"🥩 Panquecas de carne", price:0 },
-        { id:"c3", name:"🍲 Strogonoff de frango", price:0 }
+        { id:"c1", name:" Frango frito", price:0 },
+        { id:"c2", name:" Panquecas de carne", price:0 },
+        { id:"c3", name:" Strogonoff de frango", price:0 }
       ],
       bebidas: [
-        { id:"b1", name:"🥤 Coca-Cola 1,5L", price:9.00 },
-        { id:"b2", name:"🥤 Coca-Cola 1L", price:8.00 },
-        { id:"b3", name:"🥫 Refrigerante lata", price:4.50 },
-        { id:"b4", name:"🧃 Suco citrus", price:3.00 },
-        { id:"b5", name:"🧃 Refrigerante 250ml", price:2.50 }
+        { id:"b1", name:" Coca-Cola 1,5L", price:9.00 },
+        { id:"b2", name:" Coca-Cola 1L", price:8.00 },
+        { id:"b3", name:" Refrigerante lata", price:4.50 },
+        { id:"b4", name:" Suco citrus", price:3.00 },
+        { id:"b5", name:" Refrigerante 250ml", price:2.50 }
       ]
     };
 
@@ -489,8 +510,9 @@
       const qty = getProductQuantity(product.id);
       const popularBadge = product.popular ? '<span class="badge-popular"><i class="fas fa-fire"></i> Mais pedido</span>' : '';
       
+      // Para complementos (preço zero) não mostramos preço nem texto de complemento
       const priceDisplay = product.price === 0 
-        ? '<span class="product-price complemento">➕ Complemento</span>' 
+        ? '' 
         : `<span class="product-price">R$ ${product.price.toFixed(2)}</span>`;
       
       return `
@@ -578,8 +600,14 @@
       const current = h*60+m;
       const isOpen = current >= openTotal && current <= closeTotal;
       const badge = document.getElementById("statusBadge");
-      badge.innerHTML = isOpen ? "🟢 Aberto agora • 11h às 14h30" : "🔴 Fechado • Abre às 11h";
+      badge.innerHTML = isOpen ? " Aberto agora • 11h às 14h30" : " Fechado • Abre às 11h";
       badge.className = `status-badge ${isOpen ? 'status-open' : 'status-closed'}`;
+      
+      // Atualiza também o badge dinâmico na seção de horários
+      const dynamicBadge = document.getElementById("dynamicHoursBadge");
+      if (dynamicBadge) {
+        dynamicBadge.innerHTML = isOpen ? "✨ Estamos abertos agora! Peça já ✨" : "⏳ No momento estamos fechados. Abrimos às 11h.";
+      }
     }
 
     // ========== CARROSSEL ==========
