@@ -21,12 +21,12 @@
     }
 
     html, body {
-      overflow-x: hidden;            /* Bloqueia scroll horizontal */
+      overflow-x: hidden;
       width: 100%;
     }
 
     body {
-      position: relative;            /* Estabiliza o contexto de posicionamento */
+      position: relative;
       font-family: 'Poppins', sans-serif;
       background-color: var(--background);
       color: var(--text-dark);
@@ -34,13 +34,11 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    /* Garante que imagens também respeitem os limites */
     img {
       max-width: 100%;
       height: auto;
     }
 
-    /* Limita largura máxima apenas para containers principais, não para track do carrossel */
     .app-header, .hero-banner, .categories-nav, .section, .carousel-section, .hours-section, footer {
       max-width: 100%;
       overflow-x: hidden;
@@ -475,17 +473,17 @@
     }
     .carousel-container {
       position: relative;
-      overflow-x: hidden;            /* Esconde slides fora da área visível */
+      overflow-x: hidden;
       width: 100%;
     }
     .carousel-track {
       display: flex;
       transition: transform 0.5s cubic-bezier(0.2, 0.9, 0.4, 1);
-      width: 100%;                   /* Garante que o track ocupe toda a largura */
+      width: 100%;
       will-change: transform;
     }
     .carousel-slide {
-      flex: 0 0 100%;                /* Cada slide ocupa 100% da largura do container */
+      flex: 0 0 100%;
       display: flex;
       gap: 16px;
       justify-content: center;
@@ -506,7 +504,7 @@
       height: 130px;
       object-fit: cover;
       border-radius: 20px 20px 0 0;
-      background: #f0f0f0;          /* Cor de fundo enquanto a imagem carrega */
+      background: #f0f0f0;
     }
     .carousel-card-info {
       padding: 16px;
@@ -894,6 +892,72 @@
       align-items: center;
       justify-content: center;
     }
+
+    /* ---------- NOVOS ESTILOS: BOTÃO E MODAL DE ENTREGA ---------- */
+    .btn-entrega {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 90%;
+      max-width: 400px;
+      margin: 10px auto;
+      padding: 12px;
+      border: none;
+      border-radius: 12px;
+      background: #ff3b3b;
+      color: white;
+      font-weight: bold;
+      font-size: 16px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn-entrega:hover {
+      transform: scale(1.03);
+    }
+
+    .icon-localizacao {
+      width: 20px;
+      height: 20px;
+      filter: brightness(0) invert(1);  /* Ícone branco */
+    }
+
+    .modal-entrega {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: 9999;
+    }
+
+    .modal-conteudo {
+      background: white;
+      width: 90%;
+      max-width: 400px;
+      margin: 80px auto;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: left;
+    }
+
+    .modal-conteudo h2 {
+      margin-bottom: 15px;
+    }
+
+    .modal-conteudo p {
+      margin: 6px 0;
+    }
+
+    .fechar {
+      float: right;
+      font-size: 22px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -952,7 +1016,13 @@
       </div>
     </div>
 
-    <!-- CARROSSEL (totalmente funcional) -->
+    <!-- BOTÃO DE LOCAIS DE ENTREGA (ícone branco) -->
+    <button class="btn-entrega" onclick="abrirModalEntrega()">
+      <img src="https://cdn-icons-png.flaticon.com/512/5837/5837790.png" alt="Localização" class="icon-localizacao" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'20\' height=\'20\' viewBox=\'0 0 24 24\' fill=\'white\'%3E%3Cpath d=\'M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z\'/%3E%3C/svg%3E';">
+      Locais de Entrega
+    </button>
+
+    <!-- CARROSSEL -->
     <div class="carousel-section">
       <div class="carousel-header">
         <h2 class="carousel-title">Destaques da semana</h2>
@@ -1117,6 +1187,24 @@
         <div class="payment-item"><i class="fas fa-qrcode"></i> PIX</div>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- MODAL DE LOCAIS DE ENTREGA -->
+<div id="modalEntrega" class="modal-entrega">
+  <div class="modal-conteudo">
+    <span class="fechar" onclick="fecharModalEntrega()">&times;</span>
+    <h2>📍 Locais de Entrega</h2>
+    <p><strong>Bancários</strong> — R$ 15,00</p>
+    <p><strong>Cristo Redentor</strong> — R$ 12,00</p>
+    <p><strong>Geisel</strong> — R$ 12,00</p>
+    <p><strong>José Américo de Almeida</strong> — R$ 12,00</p>
+    <p><strong>Mangabeira</strong> — R$ 10,00</p>
+    <p><strong>Muçumagro</strong> — R$ 5,00</p>
+    <p><strong>Novo Milênio</strong> — R$ 10,00</p>
+    <p><strong>Paratibe</strong> — R$ 5,00</p>
+    <p><strong>Parque do Sol</strong> — R$ 5,00</p>
+    <p><strong>Valentina de Figueiredo</strong> — R$ 4,00</p>
   </div>
 </div>
 
@@ -1626,6 +1714,11 @@
           paymentModal.style.display = "none";
           setActiveNav(navHome);
         }
+        // Fechar modal de entrega
+        const modalEntrega = document.getElementById("modalEntrega");
+        if (event.target === modalEntrega) {
+          modalEntrega.style.display = "none";
+        }
       };
 
       document.getElementById("heroMenuBtn").onclick = () => 
@@ -1636,6 +1729,16 @@
 
     init();
   })();
+
+  // Funções para o modal de entrega (isoladas)
+  function abrirModalEntrega() {
+    document.getElementById("modalEntrega").style.display = "block";
+  }
+
+  function fecharModalEntrega() {
+    document.getElementById("modalEntrega").style.display = "none";
+  }
 </script>
+
 </body>
 </html>
