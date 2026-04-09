@@ -38,8 +38,8 @@
     .splash-content { text-align: center; padding: 32px; max-width: 90%; animation: softAppear 1s ease-out; }
     @keyframes softAppear { 0% { opacity: 0; transform: scale(0.96); } 100% { opacity: 1; transform: scale(1); } }
     .splash-logo {
-      width: 160px; max-width: 70%; border-radius: 32px;
-      box-shadow: 0 20px 30px rgba(0,0,0,0.25); background: white; padding: 8px;
+      width: 200px; max-width: 80%; border-radius: 32px;
+      box-shadow: 0 20px 30px rgba(0,0,0,0.25); background: white; padding: 10px;
       margin-bottom: 28px; animation: floatLogo 2s infinite alternate ease-in-out;
     }
     @keyframes floatLogo { from { transform: translateY(0) scale(1); } to { transform: translateY(-6px) scale(1.02); } }
@@ -58,7 +58,7 @@
     }
     .brand-area { display: flex; align-items: center; gap: 12px; }
     .header-logo-img {
-      width: 44px; height: 44px; border-radius: 14px; background: white; padding: 4px;
+      width: 56px; height: 56px; border-radius: 16px; background: white; padding: 6px;
       object-fit: contain; box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
     .brand-text { display: flex; flex-direction: column; }
@@ -78,7 +78,7 @@
       box-shadow: 0 2px 6px rgba(0,0,0,0.2); border: 1.5px solid white;
     }
 
-    /* Banner (sem imagem de fundo) */
+    /* Banner */
     .hero-banner {
       position: relative; background: linear-gradient(145deg, #8B0000 0%, #a50f0f 100%);
       padding: 40px 24px 56px; margin-bottom: 0; isolation: isolate;
@@ -97,11 +97,10 @@
       transition: var(--transition); display: inline-flex; align-items: center; gap: 10px;
       box-shadow: 0 8px 18px rgba(0,0,0,0.15); border: 1px solid rgba(255,255,255,0.2);
     }
-    .banner-cta:hover { background: #f0f0f0; transform: scale(1.02); }
 
     /* Categorias e cards */
     .categories-nav {
-      background: white; padding: 16px 0 8px 0; position: sticky; top: 68px; z-index: 500;
+      background: white; padding: 16px 0 8px 0; position: sticky; top: 80px; z-index: 500;
       box-shadow: 0 2px 8px rgba(0,0,0,0.04); border-bottom: 1px solid var(--border-light);
     }
     .categories-scroll {
@@ -114,7 +113,6 @@
       transition: var(--transition); flex-shrink: 0; box-shadow: 0 2px 4px rgba(0,0,0,0.02);
     }
     .cat-btn.active { background: var(--primary); color: white; }
-    .cat-btn:hover { background: #e0e0e0; }
     .section { background-color: var(--background); padding: 40px 20px; max-width: 1280px; margin: 0 auto; }
     .section-title { font-size: 1.8rem; margin-bottom: 8px; color: var(--primary); display: flex; align-items: center; gap: 10px; }
     .section-sub { color: var(--text-light); margin-bottom: 24px; }
@@ -128,10 +126,6 @@
       border: 1px solid var(--border-light); transition: var(--transition);
       box-shadow: var(--shadow-card); display: flex; align-items: center;
       justify-content: space-between; flex-wrap: wrap;
-    }
-    .product-card:hover {
-      box-shadow: var(--shadow-hover); transform: translateY(-3px);
-      border-color: var(--primary);
     }
     .product-info { flex: 2 1 180px; }
     .product-name { font-weight: 700; font-size: 1.1rem; display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
@@ -162,8 +156,8 @@
     .carousel-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 20px; }
     .carousel-title { font-size: 1.8rem; color: var(--primary); }
     .status-badge { padding: 6px 16px; border-radius: 60px; font-weight: 600; font-size: 0.85rem; }
-    .status-open { background: linear-gradient(135deg, #22c55e, #16a34a); color: #fff; box-shadow: 0 2px 6px rgba(34, 197, 94, 0.3); }
-    .status-closed { background: linear-gradient(135deg, #ef4444, #dc2626); color: #fff; box-shadow: 0 2px 6px rgba(239, 68, 68, 0.3); }
+    .status-open { background: linear-gradient(135deg, #22c55e, #16a34a); color: #fff; }
+    .status-closed { background: linear-gradient(135deg, #ef4444, #dc2626); color: #fff; }
     .carousel-container { position: relative; }
     .carousel-track { display: flex; transition: transform 0.5s cubic-bezier(0.2, 0.9, 0.4, 1); }
     .carousel-slide { flex: 0 0 100%; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; padding: 8px; }
@@ -171,7 +165,6 @@
       flex: 1 1 200px; max-width: 220px; background: white; border-radius: 20px;
       border: 1px solid #eee; transition: var(--transition); box-shadow: var(--shadow-card);
     }
-    .carousel-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
     .carousel-card img { width: 100%; height: 130px; object-fit: cover; border-radius: 20px 20px 0 0; }
     .carousel-card-info { padding: 16px; }
     .badge-card {
@@ -191,7 +184,6 @@
     .carousel-dots { display: flex; justify-content: center; gap: 12px; margin-top: 24px; }
     .dot { width: 10px; height: 10px; background: #ccc; border-radius: 20px; transition: 0.2s; cursor: pointer; }
     .dot.active { background: var(--primary); width: 28px; }
-    .dot:hover { background: var(--primary); opacity: 0.7; }
 
     /* Features, reviews, horas, FAB, modais */
     .features-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin-top: 24px; }
@@ -199,7 +191,6 @@
       text-align: center; max-width: 200px; padding: 20px; border-radius: 24px;
       transition: var(--transition); background: white; box-shadow: var(--shadow-card);
     }
-    .feature-item:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
     .feature-icon { font-size: 40px; color: var(--primary); margin-bottom: 16px; }
     .review-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; }
     .review-card {
@@ -207,7 +198,6 @@
       box-shadow: var(--shadow-card); border: 1px solid #f1f1f1;
       transition: var(--transition);
     }
-    .review-card:hover { transform: scale(1.02); box-shadow: var(--shadow-hover); }
     .contact-delivery {
       background: linear-gradient(145deg, #fff5f5, #fff); border-radius: 32px;
       padding: 32px; text-align: center; max-width: 600px; margin: 30px auto;
@@ -219,52 +209,114 @@
       background: #fafafa; border-radius: 20px; font-weight: 500;
       transition: var(--transition); border: 1px solid transparent;
     }
-    .hour-item:hover {
-      background: white; border-color: var(--primary);
-      transform: translateY(-2px); box-shadow: var(--shadow-card);
-    }
     .cart-fab {
-      position: fixed; bottom: 24px; right: 24px; background: var(--primary); color: white;
+      position: fixed; bottom: 90px; right: 24px; background: var(--primary); color: white;
       min-width: 60px; height: 60px; border-radius: 40px;
       display: flex; align-items: center; justify-content: center;
       box-shadow: 0 8px 20px rgba(0,0,0,0.25); z-index: 999; cursor: pointer;
       border: 2px solid var(--secondary); padding: 0 20px; gap: 8px; transition: var(--transition);
     }
-    .cart-fab:hover { background: var(--primary-dark); transform: scale(1.03); }
     .cart-fab span { font-weight: 700; color: white; }
     .fab-count { background: var(--secondary); color: var(--primary); border-radius: 30px; padding: 2px 8px; font-weight: 800; }
+
+    /* Bottom Navigation Bar */
+    .bottom-nav {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: white; display: flex; justify-content: space-around;
+      align-items: center; padding: 8px 16px 12px;
+      box-shadow: 0 -4px 12px rgba(0,0,0,0.08);
+      z-index: 1000; border-top: 1px solid var(--border-light);
+    }
+    .nav-item {
+      display: flex; flex-direction: column; align-items: center;
+      background: none; border: none; cursor: pointer;
+      color: #888; font-size: 0.75rem; transition: var(--transition);
+      padding: 6px 12px; border-radius: 40px;
+    }
+    .nav-item i { font-size: 1.6rem; margin-bottom: 2px; }
+    .nav-item.active { color: var(--primary); background: rgba(210,27,27,0.05); }
+    .nav-item:hover { color: var(--primary); }
+
+    /* Ajuste para espaço da bottom nav */
+    main { padding-bottom: 80px; }
+    footer { margin-bottom: 70px; }
+
+    /* Modais - centralizados verticalmente */
     .modal {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.5); display: flex; align-items: flex-end;
+      background: rgba(0,0,0,0.5); display: flex; align-items: center;      /* centraliza verticalmente */
       justify-content: center; z-index: 2000;
     }
     .modal-content {
-      background: white; padding: 28px 24px; border-radius: 32px 32px 0 0;
-      max-width: 600px; width: 100%; max-height: 80vh; overflow-y: auto;
-      animation: slideUp 0.3s ease;
+      background: white; padding: 28px 24px; border-radius: 32px;          /* borda completa */
+      max-width: 600px; width: 90%; max-height: 80vh; overflow-y: auto;
+      animation: modalFadeIn 0.3s ease;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      -webkit-overflow-scrolling: touch;
     }
-    @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+    @keyframes modalFadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+    
+    .modal-header {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
+    }
+    .modal-header h3 { flex: 1; margin: 0; }
+    .modal-close-btn {
+      background: none; border: none; font-size: 24px; cursor: pointer;
+      color: var(--text-light); padding: 4px 8px;
+    }
+
+    /* Páginas internas (modais estilo página) */
+    .page-modal .modal-content {
+      padding: 24px 20px;
+    }
+    .page-header {
+      display: flex; align-items: center; gap: 16px; margin-bottom: 24px;
+    }
+    .page-header button {
+      background: none; border: none; font-size: 24px; color: var(--primary);
+      cursor: pointer; width: 40px; height: 40px; border-radius: 40px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .page-header h2 { flex: 1; font-size: 1.8rem; color: var(--primary); }
+
+    .payment-methods-list { display: flex; flex-direction: column; gap: 16px; }
+    .payment-section { margin-bottom: 24px; }
+    .payment-section h4 { margin-bottom: 16px; color: var(--primary); font-size: 1.3rem; }
+    .payment-item {
+      display: flex; align-items: center; gap: 16px; padding: 16px;
+      background: #fafafa; border-radius: 20px; margin-bottom: 8px;
+      border: 1px solid var(--border-light);
+    }
+    .payment-item i { font-size: 28px; color: var(--primary); width: 32px; text-align: center; }
+
     .btn-primary {
       background: var(--primary); border: none; padding: 14px; border-radius: 40px;
       font-weight: 700; color: white; cursor: pointer; transition: var(--transition);
       width: 100%; font-size: 1rem;
     }
-    .btn-primary:hover { background: var(--primary-dark); }
     .btn-outline {
       background: transparent; border: 1.5px solid var(--primary); color: var(--primary);
       padding: 12px; border-radius: 40px; font-weight: 600; cursor: pointer;
       transition: var(--transition);
     }
-    .btn-outline:hover { background: var(--primary); color: white; }
     .btn-whatsapp { background: #25d366; color: white; }
-    .btn-whatsapp:hover { background: #1da851; }
-    footer { text-align: center; padding: 32px 20px; background: var(--primary); color: white; }
-    .form-input {
-      width: 100%; padding: 14px 16px; margin: 8px 0; border-radius: 30px;
-      border: 1.5px solid #ddd; font-family: inherit; font-size: 1rem;
-      transition: border 0.2s;
+    footer { 
+      text-align: center; padding: 32px 20px; background: var(--primary); color: white; 
+      margin-top: 40px;
     }
-    .form-input:focus { border-color: var(--secondary); outline: none; }
+
+    /* Toast notification */
+    .toast-message {
+      position: fixed; bottom: 100px; left: 20px; right: 20px;
+      background: #2C2C2C; color: white; padding: 14px 20px;
+      border-radius: 60px; display: flex; align-items: center; gap: 12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3); z-index: 3000;
+      max-width: 500px; margin: 0 auto; animation: toastIn 0.3s ease;
+      backdrop-filter: blur(8px); background: rgba(30,30,30,0.95);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    @keyframes toastIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .toast-icon { background: var(--primary); width: 32px; height: 32px; border-radius: 30px; display: flex; align-items: center; justify-content: center; }
   </style>
 </head>
 <body>
@@ -390,27 +442,104 @@
   <span class="fab-total" id="fabTotal">R$ 0,00</span>
 </div>
 
+<!-- BOTTOM NAVIGATION BAR -->
+<div class="bottom-nav">
+  <button class="nav-item active" id="navHome">
+    <i class="fas fa-home"></i>
+    <span>Início</span>
+  </button>
+  <button class="nav-item" id="navTerms">
+    <i class="fas fa-file-alt"></i>
+    <span>Termos</span>
+  </button>
+  <button class="nav-item" id="navPayment">
+    <i class="fas fa-credit-card"></i>
+    <span>Pagamento</span>
+  </button>
+</div>
+
 <!-- MODAIS -->
+
+<!-- Modal do Carrinho -->
 <div id="cartModal" class="modal" style="display:none;">
   <div class="modal-content">
-    <h3 style="margin-bottom:20px;"><i class="fas fa-shopping-bag"></i> Seu carrinho</h3>
+    <div class="modal-header">
+      <h3><i class="fas fa-shopping-bag"></i> Seu carrinho</h3>
+      <button class="modal-close-btn" id="closeCartModalBtn"><i class="fas fa-times"></i></button>
+    </div>
     <div id="cartItemsList"></div>
     <hr style="margin:20px 0;">
     <p style="font-size:1.2rem;"><strong>Total: R$ <span id="cartTotal">0.00</span></strong></p>
     <button id="checkoutBtnModal" class="btn-primary" style="margin-top:12px;">Finalizar pedido</button>
-    <button id="closeCartModalBtn" class="btn-outline" style="margin-top:8px;">Fechar</button>
   </div>
 </div>
 
+<!-- Modal de Checkout -->
 <div id="checkoutModal" class="modal" style="display:none;">
   <div class="modal-content">
-    <h3 style="margin-bottom:20px;">📋 Finalizar pedido</h3>
+    <div class="modal-header">
+      <h3>📋 Finalizar pedido</h3>
+      <button class="modal-close-btn" id="closeCheckoutModal"><i class="fas fa-times"></i></button>
+    </div>
     <input type="text" id="clientName" placeholder="Seu nome completo" class="form-input">
     <input type="tel" id="clientPhone" placeholder="Telefone / WhatsApp" class="form-input">
     <input type="text" id="clientAddress" placeholder="Endereço completo" class="form-input">
     <textarea id="clientObs" placeholder="Observações (opcional)" class="form-input" rows="2" style="resize:none;"></textarea>
     <button id="finalizeWhatsBtn" class="btn-primary btn-whatsapp" style="margin-top:16px;"><i class="fab fa-whatsapp"></i> Enviar pedido via WhatsApp</button>
-    <button id="closeCheckoutModal" class="btn-outline" style="margin-top:8px;">Voltar</button>
+    <button id="backToCartFromCheckout" class="btn-outline" style="margin-top:8px;">Voltar ao carrinho</button>
+  </div>
+</div>
+
+<!-- Modal de confirmação Marmita Simples -->
+<div id="simpleMarmitaModal" class="modal" style="display:none;">
+  <div class="modal-content" style="max-width:450px;">
+    <div style="text-align:center; margin-bottom:16px;">
+      <i class="fas fa-exclamation-triangle" style="font-size:48px; color:#D4AF37;"></i>
+    </div>
+    <h3 style="text-align:center; margin-bottom:16px;">Atenção ⚠️</h3>
+    <p style="text-align:center; margin-bottom:24px;">Essa opção contém apenas um pedaço de carne.</p>
+    <div style="display:flex; gap:12px;">
+      <button id="confirmSimpleMarmita" class="btn-primary" style="flex:2;">Confirmar e adicionar</button>
+      <button id="cancelSimpleMarmita" class="btn-outline" style="flex:1;">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Termos de Uso -->
+<div id="termsModal" class="modal page-modal" style="display:none;">
+  <div class="modal-content">
+    <div class="page-header">
+      <button id="closeTermsModal"><i class="fas fa-arrow-left"></i></button>
+      <h2>Termos de Uso</h2>
+    </div>
+    <div style="padding:8px 0 20px;">
+      <p style="font-size:1.1rem; line-height:1.6; margin-bottom:20px;">Olá! 😊</p>
+      <p style="margin-bottom:16px;">Gostaríamos de esclarecer que a <strong>Maná do Céu</strong> não armazena seus dados pessoais. Todas as informações fornecidas são utilizadas exclusivamente durante o processamento do seu pedido e não ficam guardadas após a finalização.</p>
+      <p style="margin-bottom:16px;">Prezamos pela sua privacidade e segurança em todos os atendimentos.</p>
+      <p>Se tiver qualquer dúvida, estamos à disposição!</p>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Formas de Pagamento -->
+<div id="paymentModal" class="modal page-modal" style="display:none;">
+  <div class="modal-content">
+    <div class="page-header">
+      <button id="closePaymentModal"><i class="fas fa-arrow-left"></i></button>
+      <h2>Formas de Pagamento</h2>
+    </div>
+    <div class="payment-methods-list">
+      <div class="payment-section">
+        <h4><i class="fas fa-hand-holding-usd"></i> Pagamento na entrega</h4>
+        <div class="payment-item"><i class="fas fa-money-bill-wave"></i> Dinheiro</div>
+        <div class="payment-item"><i class="far fa-credit-card"></i> Cartão de Crédito</div>
+        <div class="payment-item"><i class="fas fa-credit-card"></i> Cartão de Débito</div>
+      </div>
+      <div class="payment-section">
+        <h4><i class="fas fa-globe"></i> Pagamento Online</h4>
+        <div class="payment-item"><i class="fas fa-qrcode"></i> PIX</div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -429,9 +558,25 @@
       }, 600);
     }, 2500);
 
-    // ========== DADOS DO CARDÁPIO ==========
+    // Toast function
+    function showToast(message, icon = 'check-circle') {
+      const existingToast = document.querySelector('.toast-message');
+      if (existingToast) existingToast.remove();
+      
+      const toast = document.createElement('div');
+      toast.className = 'toast-message';
+      toast.innerHTML = `
+        <div class="toast-icon"><i class="fas fa-${icon}"></i></div>
+        <span style="flex:1;">${message}</span>
+      `;
+      document.body.appendChild(toast);
+      setTimeout(() => toast.remove(), 3000);
+    }
+
+    // ========== DADOS DO CARDÁPIO (adicionado Marmita Simples) ==========
     const menuData = {
       tamanhos: [
+        { id:"tam_simples", name:"🍛 Marmita Simples", desc:"Apenas um pedaço de carne", price:10.00, isSimple: true },
         { id:"tam_m", name:"🍛 Marmita M", desc:"Acompanha arroz, feijão e guarnição", price:20.00, popular: true },
         { id:"tam_g", name:"🍛 Marmita G", desc:"Mais comida, mais amor", price:25.00 }
       ],
@@ -481,7 +626,19 @@
       document.getElementById("fabTotal").innerText = `R$ ${total.toFixed(2)}`;
     }
 
+    // Variável temporária para adição pendente da marmita simples
+    let pendingSimpleProduct = null;
+
     function setProductQuantity(product, delta) {
+      if (product.isSimple && delta > 0) {
+        pendingSimpleProduct = product;
+        document.getElementById("simpleMarmitaModal").style.display = "flex";
+        return;
+      }
+      applyQuantityChange(product, delta);
+    }
+
+    function applyQuantityChange(product, delta) {
       const existing = cart.find(item => item.id === product.id);
       if (existing) {
         existing.quantity += delta;
@@ -493,6 +650,10 @@
       }
       saveCart();
       updateQuantityInput(product.id);
+      
+      if (delta > 0) {
+        showToast('Item adicionado ao carrinho', 'check-circle');
+      }
     }
 
     function getProductQuantity(productId) {
@@ -509,8 +670,8 @@
     function renderProductCard(product) {
       const qty = getProductQuantity(product.id);
       const popularBadge = product.popular ? '<span class="badge-popular"><i class="fas fa-fire"></i> Mais pedido</span>' : '';
+      const simpleBadge = product.isSimple ? '<span class="badge-popular" style="background:#D4AF37; color:#000;"><i class="fas fa-info-circle"></i> 1 carne</span>' : '';
       
-      // Para complementos (preço zero) não mostramos preço nem texto de complemento
       const priceDisplay = product.price === 0 
         ? '' 
         : `<span class="product-price">R$ ${product.price.toFixed(2)}</span>`;
@@ -519,7 +680,7 @@
         <div class="product-card" data-id="${product.id}">
           <div class="product-info">
             <div class="product-name">
-              ${product.name} ${popularBadge}
+              ${product.name} ${popularBadge} ${simpleBadge}
             </div>
             ${product.desc ? `<div class="product-desc">${product.desc}</div>` : ''}
             ${priceDisplay}
@@ -559,7 +720,7 @@
           const id = btn.getAttribute('data-id');
           const product = allProducts.find(p => p.id === id);
           if (product && getProductQuantity(id) > 0) {
-            setProductQuantity(product, -1);
+            applyQuantityChange(product, -1);
           }
         });
       });
@@ -603,7 +764,6 @@
       badge.innerHTML = isOpen ? " Aberto agora • 11h às 14h30" : " Fechado • Abre às 11h";
       badge.className = `status-badge ${isOpen ? 'status-open' : 'status-closed'}`;
       
-      // Atualiza também o badge dinâmico na seção de horários
       const dynamicBadge = document.getElementById("dynamicHoursBadge");
       if (dynamicBadge) {
         dynamicBadge.innerHTML = isOpen ? "✨ Estamos abertos agora! Peça já ✨" : "⏳ No momento estamos fechados. Abrimos às 11h.";
@@ -613,16 +773,16 @@
     // ========== CARROSSEL ==========
     const slidesData = [
       [
-        { name:"Marmita M", price:"R$ 20,00", image:"https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/groups/175622567268ade0884780d.jpeg", tag:"🔥 Popular" },
-        { name:"Marmita G", price:"R$ 25,00", image:"https://www.litoraldepalhoca.com.br/wp-content/uploads/2024/07/marmitas.webp", tag:"🍗 Família" }
+        { name:"Marmita Simples", price:"R$ 10,00", image:"https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/groups/175622567268ade0884780d.jpeg", tag:"💰 Econômica" },
+        { name:"Marmita M", price:"R$ 20,00", image:"https://instadelivery-public.nyc3.cdn.digitaloceanspaces.com/groups/175622567268ade0884780d.jpeg", tag:"🔥 Popular" }
       ],
       [
-        { name:"Frango Frito", price:"Complemento", image:"https://espetinhodesucesso.com/wp-content/uploads/2023/10/Como-fazer-frango-frito-crocante-e-sequinho.jpg", tag:"🍗 Crocante" },
-        { name:"Strogonoff", price:"Complemento", image:"https://www.receiteria.com.br/wp-content/uploads/strogonoff-de-frango-simples-e-rapido.jpeg", tag:"🥄 Cremoso" }
+        { name:"Marmita G", price:"R$ 25,00", image:"https://www.litoraldepalhoca.com.br/wp-content/uploads/2024/07/marmitas.webp", tag:"🍗 Família" },
+        { name:"Frango Frito", price:"Complemento", image:"https://espetinhodesucesso.com/wp-content/uploads/2023/10/Como-fazer-frango-frito-crocante-e-sequinho.jpg", tag:"🍗 Crocante" }
       ],
       [
-        { name:"Suco Citrus", price:"R$ 3,00", image:"https://osterstatic.reciperm.com/webp/10251.webp", tag:"🍊 Natural" },
-        { name:"Coca 1,5L", price:"R$ 9,00", image:"https://t4.ftcdn.net/jpg/02/84/65/61/360_F_284656117_sPF8gVWaX627bq5qKrlrvCz1eFfowdBf.jpg", tag:"⭐ Refrescante" }
+        { name:"Strogonoff", price:"Complemento", image:"https://www.receiteria.com.br/wp-content/uploads/strogonoff-de-frango-simples-e-rapido.jpeg", tag:"🥄 Cremoso" },
+        { name:"Suco Citrus", price:"R$ 3,00", image:"https://osterstatic.reciperm.com/webp/10251.webp", tag:"🍊 Natural" }
       ]
     ];
     
@@ -709,7 +869,7 @@
             : `R$ ${itemTotal.toFixed(2)}`;
           
           listDiv.innerHTML += `
-            <div style="display:flex; justify-content:space-between; margin-bottom:14px;">
+            <div style="display:flex; justify-content:space-between; margin-bottom:14px; align-items:center;">
               <span>${item.name} x${item.quantity}</span>
               <span>${priceDisplay} 
                 <button class="remove-item" data-idx="${idx}" style="background:none; border:none; color:#8B0000; cursor:pointer; margin-left:8px;">
@@ -769,6 +929,9 @@
 
       const cartModal = document.getElementById("cartModal");
       const checkoutModal = document.getElementById("checkoutModal");
+      const simpleModal = document.getElementById("simpleMarmitaModal");
+      const termsModal = document.getElementById("termsModal");
+      const paymentModal = document.getElementById("paymentModal");
       
       const openCart = () => { 
         renderCartModal(); 
@@ -781,7 +944,7 @@
       
       document.getElementById("checkoutBtnModal").onclick = () => {
         if(cart.length === 0) { 
-          alert("Seu carrinho está vazio."); 
+          showToast('Seu carrinho está vazio', 'exclamation-triangle');
           return; 
         }
         cartModal.style.display = "none"; 
@@ -789,6 +952,10 @@
       };
       
       document.getElementById("closeCheckoutModal").onclick = () => checkoutModal.style.display = "none";
+      document.getElementById("backToCartFromCheckout").onclick = () => {
+        checkoutModal.style.display = "none";
+        openCart();
+      };
 
       document.getElementById("finalizeWhatsBtn").onclick = () => {
         const name = document.getElementById("clientName").value.trim();
@@ -796,7 +963,7 @@
         const addr = document.getElementById("clientAddress").value.trim();
         const obs = document.getElementById("clientObs").value.trim();
         if(!name || !phone || !addr) { 
-          alert("Preencha nome, telefone e endereço."); 
+          showToast('Preencha nome, telefone e endereço', 'exclamation-triangle');
           return; 
         }
         
@@ -821,6 +988,69 @@
         saveCart(); 
         checkoutModal.style.display = "none";
         renderFullMenu();
+        showToast('Pedido enviado com sucesso!', 'check-circle');
+      };
+
+      // Modal Marmita Simples
+      document.getElementById("confirmSimpleMarmita").onclick = () => {
+        if (pendingSimpleProduct) {
+          applyQuantityChange(pendingSimpleProduct, 1);
+          pendingSimpleProduct = null;
+        }
+        simpleModal.style.display = "none";
+      };
+      document.getElementById("cancelSimpleMarmita").onclick = () => {
+        pendingSimpleProduct = null;
+        simpleModal.style.display = "none";
+      };
+
+      // Bottom Navigation
+      const navHome = document.getElementById('navHome');
+      const navTerms = document.getElementById('navTerms');
+      const navPayment = document.getElementById('navPayment');
+      
+      function setActiveNav(activeBtn) {
+        [navHome, navTerms, navPayment].forEach(btn => btn.classList.remove('active'));
+        activeBtn.classList.add('active');
+      }
+      
+      navHome.addEventListener('click', () => {
+        setActiveNav(navHome);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+      
+      navTerms.addEventListener('click', () => {
+        setActiveNav(navTerms);
+        termsModal.style.display = "flex";
+      });
+      
+      navPayment.addEventListener('click', () => {
+        setActiveNav(navPayment);
+        paymentModal.style.display = "flex";
+      });
+      
+      document.getElementById("closeTermsModal").onclick = () => {
+        termsModal.style.display = "none";
+        setActiveNav(navHome);
+      };
+      document.getElementById("closePaymentModal").onclick = () => {
+        paymentModal.style.display = "none";
+        setActiveNav(navHome);
+      };
+      
+      // Fechar modais ao clicar fora
+      window.onclick = (event) => {
+        if (event.target === cartModal) cartModal.style.display = "none";
+        if (event.target === checkoutModal) checkoutModal.style.display = "none";
+        if (event.target === simpleModal) simpleModal.style.display = "none";
+        if (event.target === termsModal) {
+          termsModal.style.display = "none";
+          setActiveNav(navHome);
+        }
+        if (event.target === paymentModal) {
+          paymentModal.style.display = "none";
+          setActiveNav(navHome);
+        }
       };
 
       document.getElementById("heroMenuBtn").onclick = () => 
